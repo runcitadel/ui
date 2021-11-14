@@ -8,6 +8,7 @@ import {
   Box,
   Card,
   Grid,
+  Image,
   Heading,
   Text,
   Themed,
@@ -18,7 +19,7 @@ import {
 import ColorModeSwitcher from "./components/layout/ColorModeSwitch";
 
 //ICONS
-import Logo from "./components/layout/Logo";
+import logo from "./assets/logo.svg";
 
 export default function App() {
   const { node, online } = useCitadel();
@@ -28,7 +29,7 @@ export default function App() {
       <Box sx={{ minHeight: "100vh" }}>
         <Grid p={3}>
           <ColorModeSwitcher />
-          <Logo />
+          <Image src={logo} alt="Citadel logo" />
           {[
             { value: node, text: "Node" },
             { value: online, text: "Online" },
