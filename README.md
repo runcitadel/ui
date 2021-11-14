@@ -8,6 +8,7 @@ This is a rewrite of the Citadel UI in React. It replaces the previous UI based 
 
 `git clone https://github.com/runcitadel/ui`
 
+### Install Packages
 
 ## Available Scripts
 
@@ -20,22 +21,6 @@ Runs the app in the development mode.<br /> Open
 
 The page will reload if you make edits.<br /> You will also see any lint errors
 in the console.
-
-### `yarn sdiff`
-
-Git diff of the main project & submodules
-
-### `yarn spush`
-
-Git push all submodules
-
-### `yarn supdate`
-
-Update all submodules
-
-### `yarn slink`
-
-Symbollically link the @runcitadel/sdk submodule to develop both simultaneously.
 
 ### `yarn test`
 

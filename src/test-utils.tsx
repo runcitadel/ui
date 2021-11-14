@@ -1,12 +1,13 @@
-import * as React from "react"
-import { render, RenderOptions } from "@testing-library/react"
-import { ChakraProvider, theme } from "@chakra-ui/react"
+import React from "react";
+import { render, RenderOptions } from "@testing-library/react";
+import { ThemeProvider } from "theme-ui";
+import { theme } from "./theme";
 
 const AllProviders = ({ children }: { children?: React.ReactNode }) => (
-  <ChakraProvider theme={theme}>{children}</ChakraProvider>
-)
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
 
 const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
-  render(ui, { wrapper: AllProviders, ...options })
+  render(ui, { wrapper: AllProviders, ...options });
 
-export { customRender as render }
+export { customRender as render };

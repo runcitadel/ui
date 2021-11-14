@@ -9,7 +9,11 @@ export default function useCitadel() {
   useEffect(() => {
     Citadel.discover()
       .then((node) => setNode(node ? node : "http://citadel.local"))
-      .catch((err) => setNode(null));
+      //Todo: handle error throw snackbar
+      .catch((err) => {
+        setNode(null);
+        console.error(err);
+      });
   }, [setNode]);
 
   useEffect(() => {
@@ -21,7 +25,8 @@ export default function useCitadel() {
       } catch (err) {
         setCitadel(null);
         setOnline(false);
-        console.log(err);
+        //Todo: handle error throw snackbar
+        console.error(err);
       }
     } else setCitadel(null);
   }, [node, setCitadel]);

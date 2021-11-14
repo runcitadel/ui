@@ -1,45 +1,49 @@
-import React from "react";
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  Heading,
-} from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { Logo } from "./Logo";
+//UTILTIES
+import { theme } from "./theme";
 import useCitadel from "./hooks/useCitadel";
+import prettyJson from "./utils/prettyJson";
 
-export const App = () => {
+//THEME
+import {
+  Box,
+  Card,
+  Grid,
+  Heading,
+  Text,
+  Themed,
+  ThemeProvider,
+} from "theme-ui";
+
+//COMPONENTS
+import ColorModeSwitcher from "./components/layout/ColorModeSwitch";
+
+//ICONS
+import Logo from "./components/layout/Logo";
+
+export default function App() {
   const { node, online } = useCitadel();
 
-  const prettyJson = (x: any) => JSON.stringify(x, null, 5);
-
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            {[
-              { value: node, text: "Node" },
-              { value: online, text: "Online" },
-            ].map(({ text, value }) => (
-              <>
-                <Heading>{text}</Heading>
-                <Code fontSize="xl">
+    <ThemeProvider theme={theme}>
+      <Box sx={{ minHeight: "100vh" }}>
+        <Grid p={3}>
+          <ColorModeSwitcher />
+          <Logo />
+          {[
+            { value: node, text: "Node" },
+            { value: online, text: "Online" },
+          ].map(({ text, value }) => (
+            <Card key={text}>
+              <Heading>{text}</Heading>
+              <Themed.pre>
+                <Themed.code>
                   {value ? prettyJson(value) : <Text>"Loading..."</Text>}
-                </Code>
-              </>
-            ))}
-          </VStack>
+                </Themed.code>
+              </Themed.pre>
+            </Card>
+          ))}
         </Grid>
       </Box>
-    </ChakraProvider>
+    </ThemeProvider>
   );
-};
+}

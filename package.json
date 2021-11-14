@@ -1,54 +1,66 @@
 {
-    "name": "citadel-dashboard",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-        "@chakra-ui/react": "^1.7.1",
-        "@emotion/react": "^11.5.0",
-        "@emotion/styled": "^11.3.0",
-        "@runcitadel/sdk": "^0.0.1-beta.5",
-        "@testing-library/jest-dom": "^5.15.0",
-        "@testing-library/react": "^12.1.2",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.0.2",
-        "@types/node": "^16.11.7",
-        "@types/react": "^17.0.34",
-        "@types/react-dom": "^17.0.11",
-        "framer-motion": "^5.3.0",
-        "prettier": "^2.4.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-icons": "^4.3.1",
-        "react-scripts": "4.0.3",
-        "typescript": "^4.4.4",
-        "web-vitals": "^2.1.2"
+  "name": "citadel-dashboard",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@runcitadel/sdk": "^0.0.1-beta.5",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.7",
+    "@types/react": "^17.0.34",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "framer-motion": "^5.3.0",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-scripts": "4.0.3",
+    "theme-ui": "^0.12.0",
+    "typescript": "^4.4.4",
+    "web-vitals": "^2.1.2"
+  },
+  "scripts": {
+    "precommit": "yarn format",
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "build": "react-scripts build",
+    "format": "prettier --write '**/*.{js,json,css,md}' '!package.json|yarn*|node_modules|build|coverage'",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "@typescript-eslint/explicit-module-boundary-types": "off"
     },
-    "scripts": {
-        "precommit": "yarn sformat",
-        "start": "react-scripts start",
-        "test": "react-scripts test",
-        "build": "yarn slink && react-scripts build",
-        "sdiff": "git diff && git submodule foreach 'git diff'",
-        "sformat": "prettier --write '**/*.{js,json,css,md}' '!package.json|yarn*|node_modules|build|coverage'",
-        "spush": "git push --recurse-submodules=on-demand",
-        "supdate": "git submodule update",
-        "slink": "cd sdk/ && npm link && cd ../src/ && npm link @runcitadel/sdk",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "packageManager": "yarn@3.1.0"
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "browserslist": {
+    "production": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "packageManager": "yarn@3.1.0"
 }
