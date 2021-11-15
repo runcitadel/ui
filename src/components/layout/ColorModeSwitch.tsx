@@ -8,7 +8,12 @@ export default function ColorModeToggle() {
     setColorMode(colorMode === "light" ? "dark" : "light");
   };
   return (
-    <IconButton aria-label="Toggle dark mode" onClick={handleColorToggle}>
+    <IconButton
+      variant="icon"
+      aria-label="Toggle dark mode"
+      onClick={handleColorToggle}
+      sx={{ pointer: "cursor" }}
+    >
       {colorMode === "light" ? <FaMoon /> : <FaSun />}
     </IconButton>
   );

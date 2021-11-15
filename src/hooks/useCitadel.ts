@@ -1,10 +1,16 @@
+//UTILITIES
 import { useState, useEffect } from "react";
 import { Citadel } from "@runcitadel/sdk";
 
+//MODELS
+import Online from "../models/Online";
+
 export default function useCitadel() {
-  const [node, setNode] = useState(null);
-  const [citadel, setCitadel] = useState(null);
-  const [online, setOnline] = useState(false);
+  const [node, setNode] = useState<string | null>(null);
+  const [citadel, setCitadel] = useState<Citadel | null>(null);
+  const [online, setOnline] = useState<Online | null>(null);
+
+  console.log(online);
 
   useEffect(() => {
     Citadel.discover()
@@ -24,7 +30,7 @@ export default function useCitadel() {
         citadel.isOnline().then((online) => setOnline(online));
       } catch (err) {
         setCitadel(null);
-        setOnline(false);
+        setOnline(null);
         //Todo: handle error throw snackbar
         console.error(err);
       }

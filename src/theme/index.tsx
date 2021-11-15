@@ -8,7 +8,7 @@ export const theme: Theme = {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96, 128],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -19,11 +19,20 @@ export const theme: Theme = {
     heading: 1.125,
   },
   colors: {
-    text: "#000",
+    text: "#162127",
     background: "#fff",
-    primary: "#07c",
-    secondary: "#30c",
-    muted: "#f6f6f6",
+    primary: "#41607D",
+    secondary: "#6892AA",
+    muted: "#A4BECD",
+    modes: {
+      dark: {
+        text: "#E5ECF1",
+        background: "#162127",
+        // primary: "#0cf",
+        // secondary: "#90c",
+        // muted: "#f6f6f6",
+      },
+    },
   },
   text: {
     heading: {
@@ -32,11 +41,45 @@ export const theme: Theme = {
       fontWeight: "heading",
     },
   },
+  buttons: {
+    icon: {
+      fontSize: [9],
+      color: "text",
+      textDecoration: "none",
+      cursor: "pointer",
+      ":hover": {
+        color: "primary",
+        textDecoration: "underline",
+      },
+    },
+  },
+  cards: {
+    primary: {
+      padding: 3,
+      borderRadius: 4,
+      bg: "muted",
+      boxShadow: "0 0 8px rgba(0, 0, 0, 0.125)",
+      modes: {
+        dark: {
+          //Todo: Why is this not toggling on?
+          background: "primary",
+        },
+      },
+    },
+    compact: {
+      padding: 1,
+      borderRadius: 2,
+      border: "1px solid",
+      borderColor: "muted",
+    },
+  },
   styles: {
     root: {
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
+      color: "text",
+      bg: "background",
     },
     h1: {
       variant: "text.heading",
@@ -85,6 +128,14 @@ export const theme: Theme = {
     td: {
       textAlign: "left",
       borderBottomStyle: "solid",
+    },
+    a: {
+      color: "primary",
+      textDecoration: "none",
+      ":hover": {
+        color: "secondary",
+        textDecoration: "underline",
+      },
     },
   },
 };
