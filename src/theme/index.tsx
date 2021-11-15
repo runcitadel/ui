@@ -24,6 +24,12 @@ export const theme: Theme = {
     primary: "#41607D",
     secondary: "#6892AA",
     muted: "#A4BECD",
+    success: "#AFC97E",
+    warning: "#DE6C83",
+    error: "#EB5E55",
+    info: "lightblue",
+    lightning: "#EEF36A",
+    bitcoin: "#FF9900",
     modes: {
       dark: {
         text: "#E5ECF1",
@@ -40,6 +46,12 @@ export const theme: Theme = {
       lineHeight: "heading",
       fontWeight: "heading",
     },
+    success: { color: "success" },
+    warning: { color: "warning" },
+    error: { color: "error" },
+    info: { color: "info" },
+    bitcoin: { color: "bitcoin" },
+    lightning: { color: "lightning" },
   },
   buttons: {
     icon: {
@@ -66,7 +78,7 @@ export const theme: Theme = {
         },
       },
     },
-    compact: {
+    secondary: {
       padding: 1,
       borderRadius: 2,
       border: "1px solid",
@@ -75,11 +87,13 @@ export const theme: Theme = {
   },
   styles: {
     root: {
+      //Todo: Styles assigned to root <html> element- some default to whatever the body is. I would prefer to set them here once we decide on them.
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
       color: "text",
       bg: "background",
+      boxSizing: "border-box",
     },
     h1: {
       variant: "text.heading",
