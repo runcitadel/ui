@@ -8,9 +8,8 @@ WORKDIR /app
 COPY . .
 RUN yarn
 
-FROM node:alpine AS builder
+FROM amd64/node:alpine AS builder
 COPY --from=deps /app /app
-WORKDIR /app
 WORKDIR /app
 COPY . .
 RUN yarn
