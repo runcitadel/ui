@@ -6,9 +6,15 @@ This is a rewrite of the Citadel UI in React. It replaces the previous UI based 
 
 ### Clone Project
 
+Execute the following command inside the folder you want the project cloned to:
+
 `git clone https://github.com/runcitadel/ui`
 
 ### Install Packages
+
+Execute the following inside the cloned project's root folder:
+
+`yarn`
 
 ## Available Scripts
 
@@ -21,6 +27,14 @@ Runs the app in the development mode.<br /> Open
 
 The page will reload if you make edits.<br /> You will also see any lint errors
 in the console.
+
+### `yarn lint`
+
+Manually run the linter.
+
+### `yarn start`
+
+Run a Next.JS production server.
 
 ### `yarn test`
 

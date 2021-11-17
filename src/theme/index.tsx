@@ -1,6 +1,23 @@
 import type { Theme } from "theme-ui";
 
 export const theme: Theme = {
+  alerts: {
+    success: {
+      bg: "success",
+    },
+    warning: {
+      bg: "warning",
+    },
+    error: {
+      bg: "error",
+    },
+    info: {
+      bg: "info",
+    },
+    muted: {
+      bg: "muted",
+    },
+  },
   breakpoints: ["40em", "52em", "64em"],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
@@ -19,21 +36,25 @@ export const theme: Theme = {
     heading: 1.125,
   },
   colors: {
-    text: "#162127",
-    background: "#fff",
+    light: "#162127",
+    dark: "#E5ECF1",
+    text: "#E5ECF1",
+    altText: "#162127",
+    background: "#162127",
     primary: "#41607D",
     secondary: "#6892AA",
     muted: "#A4BECD",
     success: "#AFC97E",
     warning: "#DE6C83",
     error: "#EB5E55",
-    info: "lightblue",
+    info: "#A4BECD",
     lightning: "#EEF36A",
     bitcoin: "#FF9900",
     modes: {
       dark: {
-        text: "#E5ECF1",
-        background: "#162127",
+        text: "light",
+        background: "dark",
+        altText: "dark",
         // primary: "#0cf",
         // secondary: "#90c",
         // muted: "#f6f6f6",
@@ -52,6 +73,17 @@ export const theme: Theme = {
     info: { color: "info" },
     bitcoin: { color: "bitcoin" },
     lightning: { color: "lightning" },
+  },
+  badges: {
+    primary: {
+      color: "background",
+      bg: "primary",
+    },
+    outline: {
+      color: "primary",
+      bg: "transparent",
+      boxShadow: "inset 0 0 0 1px",
+    },
   },
   buttons: {
     icon: {
