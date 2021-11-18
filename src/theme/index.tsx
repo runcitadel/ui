@@ -25,7 +25,9 @@ export const theme: Theme = {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96, 128],
+  fontSizes: [
+    12, 14, 16, 20, 24, 32, 48, 64, 96, 128, 1024, 2048, 4096, 8192, 16392,
+  ],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -36,8 +38,8 @@ export const theme: Theme = {
     heading: 1.125,
   },
   colors: {
-    light: "#162127",
-    dark: "#E5ECF1",
+    light: "#E5ECF1",
+    dark: "#162127",
     text: "#E5ECF1",
     altText: "#162127",
     background: "#162127",
@@ -87,14 +89,24 @@ export const theme: Theme = {
   },
   buttons: {
     icon: {
-      fontSize: [9],
-      color: "text",
+      fontSize: [14],
+      color: "secondary",
       textDecoration: "none",
       cursor: "pointer",
       ":hover": {
         color: "primary",
         textDecoration: "underline",
       },
+    },
+    darkModeToggle: {
+      fontSize: [14],
+      cursor: "pointer",
+      color: "lightning",
+      backgroundColor: "dark",
+      borderWidth: "1px",
+      borderStyle: "solid",
+      borderColor: "dark",
+      boxShadow: "1px 0px 15px RGBA(238, 243, 106, 0.125)",
     },
   },
   cards: {

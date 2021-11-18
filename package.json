@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@bitcoin-design/bitcoin-icons-react": "^0.1.7",
     "@runcitadel/sdk": "^0.0.1-beta.5",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",

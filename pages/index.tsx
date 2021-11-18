@@ -40,6 +40,7 @@ import ColorModeSwitcher from "../src/components/layout/ColorModeSwitch";
 
 //ASSETS
 import { FaCircle, FaLock, FaUnlock } from "react-icons/fa";
+import { BitcoinIcon } from "@bitcoin-design/bitcoin-icons-react/filled";
 
 //MODELS
 import Online from "../src/models/Online";
@@ -66,53 +67,44 @@ export default function App(props: Props) {
             }}
           >
             <ColorModeSwitcher />
-            <Box mt={1} p={1}>
-              <Heading>Status</Heading>
-              <Link href={process.env.BASE_URL}>{process.env.BASE_URL}</Link>
-              <Box>
-                <Flex sx={{ alignItems: "center" }}>
-                  <Text mr={1}>Manager</Text>
-                  <FaCircle color={statusColor(online?.manager)} />
-                </Flex>
-                <Flex sx={{ alignItems: "center" }}>
-                  <Text mr={1}>Middleware</Text>
-                  <FaCircle color={statusColor(online?.middleware)} />
-                </Flex>
-                <Flex sx={{ alignItems: "center" }}>
-                  <Text mr={1}>Node</Text>
-                  <FaCircle color={statusColor(online?.node)} />
-                </Flex>
-                <Flex sx={{ alignItems: "center" }}>
-                  <Text mr={1}>Lightning</Text>
-                  <FaCircle
-                    color={statusColor(online?.lnd?.operational)}
-                    style={{ marginRight: 5 }}
-                  />
-                  {online?.lnd?.unlocked ? (
-                    <FaUnlock color={statusColor(online?.lnd?.operational)} />
-                  ) : (
-                    <FaLock color={statusColor(online?.lnd?.operational)} />
-                  )}
-                </Flex>
-              </Box>
-            </Box>
-          </Flex>
-          <Flex
-            p={3}
-            sx={{
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
             <Image
               src="/logo.svg"
               alt="Citadel logo"
               sx={{ maxWidth: ["90%", "250px"] }}
             />
+          </Flex>
+          <Flex
+            p={3}
+            sx={{
+              flexDirection: "column",
+              justifyContent: "flex-start",
+              alignItems: "flex-end",
+            }}
+          >
             <Heading>Citadel</Heading>
+            <Link href={process.env.BASE_URL}>{process.env.BASE_URL}</Link>
+            <Box>
+              <Flex sx={{ alignItems: "center", justifyContent: "flex-end" }}>
+                <Text mr={1}>Manager</Text>
+                <FaCircle color={statusColor(online?.manager)} />
+              </Flex>
+              <Flex sx={{ alignItems: "center", justifyContent: "flex-end" }}>
+                <Text mr={1}>Middleware</Text>
+                <FaCircle color={statusColor(online?.middleware)} />
+              </Flex>
+              <Flex sx={{ alignItems: "center", justifyContent: "flex-end" }}>
+                <Text mr={1}>Lightning</Text>
+                <FaCircle color={statusColor(online?.lnd?.operational)} />
+                {online?.lnd?.unlocked ? (
+                  <FaUnlock color={statusColor(online?.lnd?.operational)} />
+                ) : (
+                  <FaLock color={statusColor(online?.lnd?.operational)} />
+                )}
+              </Flex>
+            </Box>
           </Flex>
         </Grid>
+        <Divider />
         <Grid columns={2}>
           <Flex p={3} sx={{ flexDirection: "column", alignItems: "center" }}>
             <Text>Normal Text</Text>
@@ -129,12 +121,31 @@ export default function App(props: Props) {
             </Themed.pre>
             <Card variant="primary" mb={3}>
               Primary Card <br />
-              ...
+              ........................ <br />
+              ........................ <br />
+              ........................ <br />
             </Card>
             <Card variant="secondary" mb={3}>
               Secondary Card <br />
-              ...
+              ........................ <br />
+              ........................ <br />
+              ........................ <br />
             </Card>
+            <Heading mb={3}>Badges</Heading>
+            <Badge variant="accent" mb={3}>
+              Accent Badge
+            </Badge>
+            <Badge variant="outline" ml={1} mb={3}>
+              Outline Badge
+            </Badge>
+            <Heading>Close Button:</Heading>
+            <Close mb={3} />
+            <Heading>IconButton</Heading>
+            <IconButton aria-label="BitcoinIcon" mb={3}>
+              <BitcoinIcon style={{ color: "#F7931A" }} />
+            </IconButton>
+            <Heading>MenuButton</Heading>
+            <MenuButton aria-label="Toggle Menu" mb={3} />
           </Flex>
           <Flex
             p={3}
@@ -154,6 +165,19 @@ export default function App(props: Props) {
             <Paragraph sx={{ wordBreak: "break-all" }}>
               {"Paragraph".repeat(11)}
             </Paragraph>
+            <Label>Slider</Label>
+            <Slider mb={3} />
+            <Heading>Toggle:</Heading>
+
+            <Button mb={3}>Button</Button>
+            <Heading>Progress:</Heading>
+            <Progress max={1} value={1 / 2} mb={3}>
+              50%
+            </Progress>
+            <Heading mb={3}>Donut:</Heading>
+            <Donut value={0.5} />
+            <Heading>Spinner:</Heading>
+            <Spinner mb={3} />
           </Flex>
         </Grid>
         <Divider />
@@ -174,7 +198,10 @@ export default function App(props: Props) {
             <option>Boop</option>
             <option>Blip</option>
           </Select>
-          <Label htmlFor="comment">Comment</Label>
+          <Switch label="Enable something?" mb={3} />
+          <Label mt={3} htmlFor="comment">
+            Comment
+          </Label>
           <Textarea name="comment" id="comment" rows={6} mb={3} />
           <Flex mb={3}>
             <Label>
@@ -187,26 +214,7 @@ export default function App(props: Props) {
               <Radio name="letter" /> Charlie
             </Label>
           </Flex>
-          <Label>Slider</Label>
-          <Slider mb={3} />
-          <Heading>Toggle:</Heading>
-          <Switch label="Enable email alerts?" mb={3} />
-          <Button mb={3}>Button</Button>
-          <Heading>Progress:</Heading>
-          <Progress max={1} value={1 / 2} mb={3}>
-            50%
-          </Progress>
-          <Heading mb={3}>Donut:</Heading>
-          <Donut value={0.5} />
-          <Heading>Spinner:</Heading>
-          <Spinner mb={3} />
-          <Heading>Badges</Heading>
-          <Badge variant="accent">Accent Badge</Badge>
-          <Badge variant="outline" ml={1} mb={3}>
-            Outline Badge
-          </Badge>
-          <Heading>Close Button:</Heading>
-          <Close mb={3} />
+
           <Alert variant="success" mb={3}>
             Success Alert
             <Close ml="auto" mr={-2} />
@@ -235,27 +243,6 @@ export default function App(props: Props) {
             </NavLink>
           </Flex>
           <Message mb={3}>This is just a message for someone to read</Message>
-          <Heading>IconButton</Heading>
-          <IconButton aria-label="Toggle dark mode" mb={3}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-              fill="currentcolor"
-            >
-              <circle
-                r={11}
-                cx={12}
-                cy={12}
-                fill="none"
-                stroke="currentcolor"
-                strokeWidth={2}
-              />
-            </svg>
-          </IconButton>
-          <Heading>MenuButton</Heading>
-          <MenuButton aria-label="Toggle Menu" mb={3} />
         </Box>
       </Box>
     </ThemeProvider>

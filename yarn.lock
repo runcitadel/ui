@@ -1290,6 +1290,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bitcoin-design/bitcoin-icons-react@npm:^0.1.7":
+  version: 0.1.7
+  resolution: "@bitcoin-design/bitcoin-icons-react@npm:0.1.7"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 7c8b6ddabb668e7705352d2927820dcca303c070149f66e04d4b7c136301708839cd52cc21eb1c8bfc3594b94f02a8aed2a2e59b1e42c2dd093b8681252bd8ce
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-plugin@npm:^11.3.0":
   version: 11.3.0
   resolution: "@emotion/babel-plugin@npm:11.3.0"
@@ -2989,6 +2998,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "citadel-dashboard@workspace:."
   dependencies:
+    "@bitcoin-design/bitcoin-icons-react": ^0.1.7
     "@runcitadel/sdk": ^0.0.1-beta.5
     "@testing-library/jest-dom": ^5.15.0
     "@testing-library/react": ^12.1.2
