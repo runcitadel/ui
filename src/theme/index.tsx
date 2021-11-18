@@ -1,6 +1,23 @@
 import type { Theme } from "theme-ui";
 
 export const theme: Theme = {
+  alerts: {
+    success: {
+      bg: "success",
+    },
+    warning: {
+      bg: "warning",
+    },
+    error: {
+      bg: "error",
+    },
+    info: {
+      bg: "info",
+    },
+    muted: {
+      bg: "muted",
+    },
+  },
   breakpoints: ["40em", "52em", "64em"],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
@@ -8,7 +25,9 @@ export const theme: Theme = {
     heading: "inherit",
     monospace: "Menlo, monospace",
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96, 128],
+  fontSizes: [
+    12, 14, 16, 20, 24, 32, 48, 64, 96, 128, 1024, 2048, 4096, 8192, 16392,
+  ],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -19,15 +38,25 @@ export const theme: Theme = {
     heading: 1.125,
   },
   colors: {
-    text: "#162127",
-    background: "#fff",
+    light: "#E5ECF1",
+    dark: "#162127",
+    text: "#E5ECF1",
+    altText: "#162127",
+    background: "#162127",
     primary: "#41607D",
     secondary: "#6892AA",
     muted: "#A4BECD",
+    success: "#AFC97E",
+    warning: "#DE6C83",
+    error: "#EB5E55",
+    info: "#A4BECD",
+    lightning: "#EEF36A",
+    bitcoin: "#FF9900",
     modes: {
       dark: {
-        text: "#E5ECF1",
-        background: "#162127",
+        text: "light",
+        background: "dark",
+        altText: "dark",
         // primary: "#0cf",
         // secondary: "#90c",
         // muted: "#f6f6f6",
@@ -40,17 +69,44 @@ export const theme: Theme = {
       lineHeight: "heading",
       fontWeight: "heading",
     },
+    success: { color: "success" },
+    warning: { color: "warning" },
+    error: { color: "error" },
+    info: { color: "info" },
+    bitcoin: { color: "bitcoin" },
+    lightning: { color: "lightning" },
+  },
+  badges: {
+    primary: {
+      color: "background",
+      bg: "primary",
+    },
+    outline: {
+      color: "primary",
+      bg: "transparent",
+      boxShadow: "inset 0 0 0 1px",
+    },
   },
   buttons: {
     icon: {
-      fontSize: [9],
-      color: "text",
+      fontSize: [14],
+      color: "secondary",
       textDecoration: "none",
       cursor: "pointer",
       ":hover": {
         color: "primary",
         textDecoration: "underline",
       },
+    },
+    darkModeToggle: {
+      fontSize: [14],
+      cursor: "pointer",
+      color: "lightning",
+      backgroundColor: "dark",
+      borderWidth: "1px",
+      borderStyle: "solid",
+      borderColor: "dark",
+      boxShadow: "1px 0px 15px RGBA(238, 243, 106, 0.125)",
     },
   },
   cards: {
@@ -66,7 +122,7 @@ export const theme: Theme = {
         },
       },
     },
-    compact: {
+    secondary: {
       padding: 1,
       borderRadius: 2,
       border: "1px solid",
@@ -75,11 +131,13 @@ export const theme: Theme = {
   },
   styles: {
     root: {
+      //Todo: Styles assigned to root <html> element- some default to whatever the body is. I would prefer to set them here once we decide on them.
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
       color: "text",
       bg: "background",
+      boxSizing: "border-box",
     },
     h1: {
       variant: "text.heading",
