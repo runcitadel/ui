@@ -3015,13 +3015,13 @@ __metadata:
   linkType: hard
 
 "@types/react@npm:*, @types/react@npm:^17.0.34":
-  version: 17.0.35
-  resolution: "@types/react@npm:17.0.35"
+  version: 17.0.36
+  resolution: "@types/react@npm:17.0.36"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 33e2bf8068ccc5330f089f5d4bee54649c2d5b512edee4a9e44c113271a69ea8c71ddbd3103b205eb971fd4c358e9f69d707df08bec90b3c33492db374614eb7
+  checksum: feeaa484d5d7e354ba6830b06342dec6fd1a2ac87f73d21d3d4f2a3d311459de4090330a1e8af7275c8d1e7737b655a7550c8dd3dbc74ccf34ffd3fc824bbd12
   languageName: node
   linkType: hard
 
@@ -3241,14 +3241,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.6.0":
-  version: 8.8.1
-  resolution: "ajv@npm:8.8.1"
+  version: 8.8.2
+  resolution: "ajv@npm:8.8.2"
   dependencies:
     fast-deep-equal: ^3.1.1
     json-schema-traverse: ^1.0.0
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
-  checksum: 1d586cea81b266f5f984c3a9f392a70f59181eb895ecb3463c4fc5c6acd5a4aefbe28f6d361dec4b04078fa6ec8343113cc8abdf577c8b99790d30ef71eea6b2
+  checksum: 90849ef03c4f4f7051d15f655120137b89e3205537d683beebd39d95f40c0ca00ea8476cd999602d2f433863e7e4bf1b81d1869d1e07f4dcf56d71b6430a605c
   languageName: node
   linkType: hard
 

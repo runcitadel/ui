@@ -2,7 +2,7 @@
 import { Props } from "../models/Props";
 
 export default function App() {
-  return <></>;
+  return <>Index..</>;
 }
 
 export async function getStaticProps() {
