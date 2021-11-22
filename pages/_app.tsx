@@ -1,7 +1,26 @@
-import Head from "next/head";
-import "../src/global.css";
+//MODELS & UTILS
+import { SSRProvider } from "@react-aria/ssr";
+import { useLocale } from "@react-aria/i18n";
+import { useState } from "react";
 
-export default function MyApp({ Component, pageProps }) {
+//STYLES & THEME
+import { ThemeProvider } from "next-themes";
+import { darkTheme } from "../styles/stitches.config";
+import "../styles/reset.css";
+
+//COMPONENTS
+import Head from "next/head";
+import Lock from "../components/layout/Lock";
+
+//MODELS
+import { AppProps } from "next/app";
+
+export default function App({ Component, pageProps }: AppProps) {
+  let { locale, direction } = useLocale();
+
+  //Todo: Make a request to see if the node is locked or not
+  const [locked, setLocked] = useState(true);
+
   return (
     <>
       <Head>
@@ -11,40 +30,49 @@ export default function MyApp({ Component, pageProps }) {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
-        <meta name="description" content="Description" />
-        <meta name="keywords" content="Keywords" />
+        <meta name="description" content="Citadel Node" />
+        <meta name="keywords" content="Bitcoin, Lightning" />
         <title>Citadel</title>
 
-        {/*  Todo: Updated all meta tags and links  */}
+        {/*  Todo: Updated all meta tags, icons, etc  */}
         <link rel="manifest" href="/manifest.json" />
         <link
-          href="/icons/favicon-16x16.png"
+          href="/favicon-16x16.png"
           rel="icon"
           type="image/png"
           sizes="16x16"
         />
         <link
-          href="/icons/favicon-32x32.png"
+          href="/favicon-32x32.png"
           rel="icon"
           type="image/png"
           sizes="32x32"
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
-        <meta name="theme-color" content="#317EFB" />
+        <meta name="theme-color" content="#41607D" />
       </Head>
-      <Component {...pageProps} />
+
+      <SSRProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          value={{
+            dark: darkTheme.className,
+            light: "light",
+          }}
+        >
+          {pageProps.protected && locked ? (
+            <Lock />
+          ) : (
+            <Component
+              {...pageProps}
+              lang={locale}
+              dir={direction}
+              setLocked={setLocked}
+            />
+          )}
+        </ThemeProvider>
+      </SSRProvider>
     </>
   );
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
