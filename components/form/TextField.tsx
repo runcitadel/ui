@@ -1,5 +1,5 @@
 import { useTextField } from "@react-aria/textfield";
-import { useRef } from "react";
+import { InputHTMLAttributes, useRef } from "react";
 import { Props } from "../../models/Props";
 import { styled } from "../../styles/stitches.config";
 
@@ -34,7 +34,10 @@ export function TextField(props: Props) {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <TextFieldLabelBase {...labelProps}>{label}</TextFieldLabelBase>
-      <TextFieldBase {...inputProps} ref={ref} />
+      <TextFieldBase
+        {...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
+        ref={ref}
+      />
       {props.description && (
         <div {...descriptionProps} style={{ fontSize: 12 }}>
           {props.description}

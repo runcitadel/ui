@@ -24,8 +24,7 @@ function RadioGroup(props: Props) {
     </div>
   );
 }
-
-function Radio(props: any) {
+export function Radio(props: any) {
   let { children } = props;
   let state = useContext(RadioContext);
   let ref = useRef(null);
