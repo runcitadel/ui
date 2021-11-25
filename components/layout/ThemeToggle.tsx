@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Button } from "../form/Button";
-import { darkTheme, styled } from "../../styles/stitches.config";
-import { useToggleState } from "@react-stately/toggle";
+import { styled } from "../../styles/stitches.config";
 
 const SunIcon = styled(FaSun, {
   size: "$6",

@@ -4,8 +4,6 @@ import { Props } from "../../models/Props";
 import { styled } from "../../styles/stitches.config";
 
 const TextFieldBase = styled("input", {
-  padding: "$3 $2",
-  fontSize: "$5",
   textAlign: "center",
   borderRadios: "$2",
   "@bp2": {
@@ -33,8 +31,8 @@ export function TextField(props: Props) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <TextFieldLabelBase {...labelProps}>{label}</TextFieldLabelBase>
-      <TextFieldBase
+      <label {...labelProps}>{label}</label>
+      <input
         {...(inputProps as InputHTMLAttributes<HTMLInputElement>)}
         ref={ref}
       />

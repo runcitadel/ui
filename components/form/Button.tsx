@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { styled } from "../../styles/stitches.config";
 import { useButton } from "@react-aria/button";
 import { Props } from "../../models/Props";
@@ -12,9 +12,9 @@ const ButtonStyled = styled("button", {
   border: "1px solid $muted",
   borderColor: "$muted",
   borderRadius: "$2",
-  boxShadow: "$1",
+  boxShadow: "$2",
   ":hover": {
-    boxShadow: "$2",
+    boxShadow: "$3",
   },
   variants: {
     filled: {
@@ -44,7 +44,7 @@ const ButtonStyled = styled("button", {
   },
 });
 
-export const Button = (props: Props) => {
+export function Button(props: Props) {
   let ref = React.useRef(null);
   let { buttonProps } = useButton(props, ref);
 
@@ -53,4 +53,4 @@ export const Button = (props: Props) => {
       {props.children}
     </ButtonStyled>
   );
-};
+}

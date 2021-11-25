@@ -6,6 +6,9 @@ import { useSearchFieldState } from "@react-stately/searchfield";
 //MODELS
 import { Props } from "../../models/Props";
 
+//COMPONENTS
+import { Box } from "../layout/Box";
+
 export function SearchField(props: Props) {
   let { label } = props;
   let state = useSearchFieldState(props);
@@ -13,9 +16,9 @@ export function SearchField(props: Props) {
   let { labelProps, inputProps } = useSearchField(props, state, ref);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", width: 200 }}>
+    <Box css={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <label {...labelProps}>{label}</label>
       <input {...inputProps} ref={ref} />
-    </div>
+    </Box>
   );
 }

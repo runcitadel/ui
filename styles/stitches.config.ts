@@ -42,13 +42,16 @@ export const {
       hiContrast: "$dark",
       loContrast: "$light",
 
+      //I am not positive that all of the colors defined below are being used
+      //But please don't delete this one, anyways! The focus ring is ess
+      focusRingColor: "$light",
+
       canvas: "hsl(0 0% 93%)",
       panel: "white",
-      focusRingColor: "$success",
       clear: "hsla(0, 0%, 0%, 0)",
       transparentPanel: "hsl(0 0% 0% / 97%)",
-      shadowLight: "hsl(206 22% 7% / 35%)",
-      shadowDark: "hsl(206 22% 7% / 20%)",
+      shadowLight: "210deg 38% 21%",
+      shadowDark: "202deg 26% 31%",
     },
     space: scales,
     sizes: scales,
@@ -67,19 +70,27 @@ export const {
       4: "400",
       max: "999",
     },
-    shadows: {
-      1: "0 0 0 1px rgba(0, 0, 0, 0.05)",
-      2: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-      3: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      4: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-      5: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-      6: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-      7: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
-      inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
-      popper: `0 0 1px $colors$borderStill, $shadows$lg`,
-      base: "$1",
-      "base:hover": "$2, $2",
-      none: "none",
+    boxShadows: {
+      1: `0.3px 0.5px 0.7px hsl($shadowLight / 0.34),
+        0.4px 0.8px 1px -1.2px hsl($shadowLight / 0.34),
+        1px 2px 2.5px -2.5px hsl($shadowLight / 0.34)`,
+      2: `0.3px 0.5px 0.7px hsl($shadowLight / 0.36),
+        0.8px 1.6px 2px -0.8px hsl($shadowLight / 0.36),
+        2.1px 4.1px 5.2px -1.7px hsl($shadowLight / 0.36),
+        5px 10px 12.6px -2.5px hsl($shadowLight / 0.36)`,
+      3: `0.3px 0.5px 0.7px hsl($shadowLight / 0.34),
+        1.5px 2.9px 3.7px -0.4px hsl($shadowLight / 0.34),
+        2.7px 5.4px 6.8px -0.7px hsl($shadowLight / 0.34),
+        4.5px 8.9px 11.2px -1.1px hsl($shadowLight / 0.34),
+        7.1px 14.3px 18px -1.4px hsl($shadowLight / 0.34),
+        11.2px 22.3px 28.1px -1.8px hsl($shadowLight / 0.34),
+        17px 33.9px 42.7px -2.1px hsl($shadowLight / 0.34),
+        25px 50px 62.9px -2.5px hsl($shadowLight / 0.34)`,
+      // inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+      // popper: `0 0 1px $colors$borderStill, $shadows$lg`,
+      // base: "$1",
+      // "base:hover": "$2, $2",
+      // none: "none",
     },
     fonts: {
       untitled:
@@ -291,31 +302,5 @@ export const darkTheme = createTheme("dark", {
     text: "$light",
     altText: "$dark",
     background: "$dark",
-  },
-});
-
-//Todo: Not sure if this is needed.
-export const globalStyles = globalCss({
-  "@dark": {
-    // notice the `media` definition on the stitches.config.ts file
-    ":root:not(.light)": {
-      ...Object.keys(darkTheme.colors).reduce((varSet, currentColorKey) => {
-        /*
-            Todo: I am not sure why TypeScript has an issue with this.
-            The syntax may be too tricky for the current linter's capabilities?
-        */
-        // eslint-disable-next-line
-        const currentColor = darkTheme.colors[currentColorKey];
-        const currentColorValue =
-          currentColor.value.substring(0, 1) === "$"
-            ? `$colors${currentColor.value}`
-            : currentColor.value;
-
-        return {
-          [currentColor.variable]: currentColorValue,
-          ...varSet,
-        };
-      }, {}),
-    },
   },
 });
