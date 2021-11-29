@@ -2,13 +2,16 @@
 import { createContext, useContext, useRef } from "react";
 import { useFocusRing } from "@react-aria/focus";
 import { useRadio, useRadioGroup } from "@react-aria/radio";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
 
 //MODELS
 import { Props } from "../../models/Props";
 
 //STATE
 import { useRadioGroupState } from "@react-stately/radio";
+
+//COMPONENTS
+import { Any } from "../layout/Any";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
 
 let RadioContext = createContext<any>(null);
 
@@ -24,8 +27,7 @@ function RadioGroup(props: Props) {
     </div>
   );
 }
-
-function Radio(props: any) {
+export function Radio(props: any) {
   let { children } = props;
   let state = useContext(RadioContext);
   let ref = useRef(null);
@@ -36,17 +38,18 @@ function Radio(props: any) {
   let strokeWidth = isSelected ? 6 : 2;
 
   return (
-    <label style={{ display: "flex", alignItems: "center" }}>
+    <Any as="label" css={{ display: "flex", alignItems: "center" }}>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
-      <svg width={24} height={24} aria-hidden="true" style={{ marginRight: 4 }}>
-        <circle
+      <Any as="svg" width={24} height={24} aria-hidden="true" css={{ mr: 4 }}>
+        <Any
+          as="circle"
           cx={12}
           cy={12}
           r={8 - strokeWidth / 2}
           fill="none"
-          stroke={isSelected ? "orange" : "gray"}
+          css={{ stroke: isSelected ? "$primary" : "$light" }}
           strokeWidth={strokeWidth}
         />
         {isFocusVisible && (
@@ -59,8 +62,8 @@ function Radio(props: any) {
             strokeWidth={2}
           />
         )}
-      </svg>
+      </Any>
       {children}
-    </label>
+    </Any>
   );
 }

@@ -42,13 +42,19 @@ export const {
       hiContrast: "$dark",
       loContrast: "$light",
 
-      canvas: "hsl(0 0% 93%)",
+      focusRing: "$dark",
+
+      canvasText: "$dark",
+      canvas: "$light",
+
+      shadow: "hsl(210deg 38% 21% / 0.34)",
+
+      //I am not positive if the colors defined below are necessary or not
+
+      //Todo: define panel color and set different one for darkMode to be used for the backgound on cards
       panel: "white",
-      focusRingColor: "$success",
-      clear: "hsla(0, 0%, 0%, 0)",
       transparentPanel: "hsl(0 0% 0% / 97%)",
-      shadowLight: "hsl(206 22% 7% / 35%)",
-      shadowDark: "hsl(206 22% 7% / 20%)",
+      clear: "hsla(0, 0%, 0%, 0)",
     },
     space: scales,
     sizes: scales,
@@ -68,18 +74,26 @@ export const {
       max: "999",
     },
     shadows: {
-      1: "0 0 0 1px rgba(0, 0, 0, 0.05)",
-      2: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-      3: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      4: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-      5: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-      6: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-      7: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
-      inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
-      popper: `0 0 1px $colors$borderStill, $shadows$lg`,
-      base: "$1",
-      "base:hover": "$2, $2",
-      none: "none",
+      1: `0.3px 0.5px 0.7px $colors$shadow,
+        0.8px 1.6px 2px -0.8px $colors$shadow`,
+      2: `0.3px 0.5px 0.7px $colors$shadow,
+        0.8px 1.6px 2px -0.8px $colors$shadow,
+        2.1px 3.1px 4.2px -1.7px $colors$shadow,
+        2.8px 3.4px 3.6px -2.5px $colors$shadow`,
+      3: `0.3px 0.5px 0.7px $colors$shadow,
+        1.5px 2.9px 3.7px -0.4px $colors$shadow,
+        2.7px 5.4px 6.8px -0.7px $colors$shadow,
+        4.5px 8.9px 11.2px -1.1px $colors$shadow,
+        7.1px 14.3px 18px -1.4px $colors$shadow,
+        11.2px 22.3px 28.1px -1.8px $colors$shadow,
+        17px 33.9px 42.7px -2.1px $colors$shadow,
+        25px 50px 62.9px -2.5px $colors$shadow`,
+      inner$1: "inset $shadows$1",
+      inner$2: "inset $shadows$2",
+      inner$3: "inset $shadows$3",
+      base: "$2",
+      "base:hover": "$1",
+      // none: "none",
     },
     fonts: {
       untitled:
@@ -271,7 +285,7 @@ export const {
       backgroundImage: `linear-gradient(${value})`,
     }),
 
-    transparent: (value: number) => ({
+    transparentBackground: (value: number) => ({
       backgroundColor: `rgba(0, 0, 0, ${
         value >= 0 || value <= 1 ? value : "0%"
       })`,
@@ -279,43 +293,12 @@ export const {
   },
 });
 
-//Todo: Pick out what we should use as variants
-
 export const darkTheme = createTheme("dark", {
-  //   ...globalCss,
-  //   ...css,
-  //   ...getCssText,
-  //   ...config,
   colors: {
-    // ...theme.colors,
     text: "$light",
     altText: "$dark",
     background: "$dark",
-  },
-});
-
-//Todo: Not sure if this is needed.
-export const globalStyles = globalCss({
-  "@dark": {
-    // notice the `media` definition on the stitches.config.ts file
-    ":root:not(.light)": {
-      ...Object.keys(darkTheme.colors).reduce((varSet, currentColorKey) => {
-        /*
-            Todo: I am not sure why TypeScript has an issue with this.
-            The syntax may be too tricky for the current linter's capabilities?
-        */
-        // eslint-disable-next-line
-        const currentColor = darkTheme.colors[currentColorKey];
-        const currentColorValue =
-          currentColor.value.substring(0, 1) === "$"
-            ? `$colors${currentColor.value}`
-            : currentColor.value;
-
-        return {
-          [currentColor.variable]: currentColorValue,
-          ...varSet,
-        };
-      }, {}),
-    },
+    shadow: "hsl(202deg 26% 31% / 0.34)",
+    focusRing: "$light",
   },
 });

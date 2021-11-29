@@ -6,6 +6,10 @@ import { useSearchFieldState } from "@react-stately/searchfield";
 //MODELS
 import { Props } from "../../models/Props";
 
+//COMPONENTS
+import { Box } from "../layout/Box";
+import { BaseTextField, BaseTextFieldLabel } from "./TextField";
+
 export function SearchField(props: Props) {
   let { label } = props;
   let state = useSearchFieldState(props);
@@ -13,9 +17,16 @@ export function SearchField(props: Props) {
   let { labelProps, inputProps } = useSearchField(props, state, ref);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", width: 200 }}>
-      <label {...labelProps}>{label}</label>
-      <input {...inputProps} ref={ref} />
-    </div>
+    <Box
+      css={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        ...props.css,
+      }}
+    >
+      <BaseTextFieldLabel {...labelProps}>{label}</BaseTextFieldLabel>
+      <BaseTextField {...inputProps} ref={ref} />
+    </Box>
   );
 }
