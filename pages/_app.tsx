@@ -1,26 +1,21 @@
-//MODELS & UTILS
+//PROVIDERS
 import { SSRProvider } from "@react-aria/ssr";
-import { useLocale } from "@react-aria/i18n";
-import { useState } from "react";
-
-//STYLES & THEME
 import { ThemeProvider } from "next-themes";
+
+//STYLES
 import { darkTheme } from "../styles/stitches.config";
 import "../styles/reset.css";
 
 //COMPONENTS
 import Head from "next/head";
-import Lock from "../components/layout/Lock";
 
 //MODELS
 import { AppProps } from "next/app";
+import { Layout } from "../components/layout/Layout";
+import { Citadel } from "../lib/Citadel";
 
 export default function App({ Component, pageProps }: AppProps) {
-  let { locale, direction } = useLocale();
-
-  //Todo: Make a request to see if the node is locked or not
-  const [locked, setLocked] = useState(true);
-
+  console.log(pageProps, "pageProps");
   return (
     <>
       <Head>
@@ -61,16 +56,9 @@ export default function App({ Component, pageProps }: AppProps) {
             light: "light",
           }}
         >
-          {pageProps.protected && locked ? (
-            <Lock />
-          ) : (
-            <Component
-              {...pageProps}
-              lang={locale}
-              dir={direction}
-              setLocked={setLocked}
-            />
-          )}
+          <Layout protectedRoute={pageProps.protected}>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </SSRProvider>
     </>

@@ -1,67 +1,117 @@
-import React, { useRef } from "react";
-import { styled } from "../../styles/stitches.config";
+//UTILS
+import { useRef } from "react";
+import { darkTheme, styled } from "../../styles/stitches.config";
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
-import { useToggleState } from "@react-stately/toggle";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
+
+//MODELS
 import { Props } from "../../models/Props";
 
-//Pretty much I just want stitches' "css" prop on this HTML element.
-//See the "css=" props below. I wanted to use stiches to dynamically pull in theme color tokens..
-const StyledRect = styled("rect");
+//COMPONENTS
+import { Any } from "../layout/Any";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
 
-//Todo: light mode focus wring currently not visible
+export const ToggleLabel = styled("label", {
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
+  "&:active": {
+    transform: "translateY(3px)",
+  },
+});
+
 export function Checkbox(props: Props) {
-  let state = useToggleState(props);
+  let { state, size = 2 } = props;
   let ref = useRef(null);
   let { inputProps } = useCheckbox(props, state, ref);
   let { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <label style={{ display: "flex", alignItems: "center" }}>
+    <ToggleLabel>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
-      <svg width={24} height={24} aria-hidden="true" style={{ marginRight: 4 }}>
-        <StyledRect
-          x={state.isSelected ? 4 : 5}
-          y={state.isSelected ? 4 : 5}
-          width={state.isSelected ? 16 : 14}
-          height={state.isSelected ? 16 : 14}
+      <Any
+        as="svg"
+        width={24 * size}
+        height={24 * size}
+        aria-hidden="true"
+        css={{
+          marginRight: "$2",
+        }}
+      >
+        <Any
+          as="rect"
+          transform={`translate(${1.5 * size} ${1.5 * size})`}
+          x={3 * size}
+          y={3 * size}
+          width={15 * size}
+          height={15 * size}
           css={{
-            fill: state.isSelected ? "$primary" : "none",
-            stroke: state.isSelected ? "none" : "$light",
+            rx: "$radii$3",
+            fill: "$primary",
+            stroke: "$dark",
+            "&:active": {
+              rx: "$radii$3",
+              strokeWidth: "$sizes$2",
+              stroke: "$focusRing",
+            },
+            [`.${darkTheme} &`]: {
+              stroke: "$muted",
+            },
           }}
-          strokeWidth={2}
         />
         {state.isSelected && (
-          <path
-            transform="translate(7 7)"
-            d={`M3.788 9A.999.999 0 0 1 3 8.615l-2.288-3a1 1 0 1 1
-            1.576-1.23l1.5 1.991 3.924-4.991a1 1 0 1 1 1.576 1.23l-4.712
-            6A.999.999 0 0 1 3.788 9z`}
-          />
+          <>
+            <Any
+              as="line"
+              transform={`translate(${3 * size} ${3 * size})`}
+              x1={4 * size}
+              y1={9 * size}
+              x2={6 * size}
+              y2={12 * size}
+              strokeWidth="3"
+              strokeDashArray="270"
+              strokeDashOffset="270"
+              css={{
+                fill: "$secondary",
+                stroke: "$light",
+              }}
+            />
+            <Any
+              as="line"
+              transform={`translate(${3 * size} ${3 * size})`}
+              x1={13 * size}
+              y1={5 * size}
+              x2={6 * size}
+              y2={12 * size}
+              strokeWidth="3"
+              strokeDashArray="270"
+              strokeDashOffset="270"
+              css={{
+                fill: "none",
+                stroke: "$light",
+              }}
+            />
+          </>
         )}
         {isFocusVisible && (
-          <StyledRect
-            x={1}
-            y={1}
-            width={22}
-            height={22}
+          <Any
+            as="rect"
+            x={4 * size}
+            y={4 * size}
+            width={15 * size}
+            height={15 * size}
             fill="none"
-            strokeWidth={2}
             css={{
-              stroke: "$dark",
-              modes: {
-                dark: {
-                  stroke: "$light",
-                },
-              },
+              rx: "$radii$3",
+              strokeWidth: "$sizes$2",
+              stroke: "$focusRing",
             }}
           />
         )}
-      </svg>
+      </Any>
       {props.children}
-    </label>
+    </ToggleLabel>
   );
 }

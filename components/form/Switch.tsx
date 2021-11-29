@@ -1,69 +1,76 @@
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { useToggleState } from "@react-stately/toggle";
-import { useFocusRing } from "@react-aria/focus";
-import { Props } from "../../models/Props";
+//UTILS
 import { useRef } from "react";
+import { darkTheme } from "../../styles/stitches.config";
+
+//ACCESSIBILITY
+import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
-import { styled } from "../../styles/stitches.config";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
 
-//Pretty much I just want stitches' "css" prop on these HTML elements.
-//See the "css=" props below. I wanted to use stiches to dynamically pull in theme color tokens..
-const StyledRect = styled("rect");
-const StyledCircle = styled("circle");
+//COMPONENTS
+import { Any } from "../layout/Any";
+import { Props } from "../../models/Props";
+import { ToggleLabel } from "./CheckBox";
 
-//Todo: add label
 export function Switch(props: Props) {
-  let state = useToggleState(props);
+  let { state, size = 2 } = props;
   let ref = useRef(null);
   let { inputProps } = useSwitch(props, state, ref);
   let { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <label style={{ display: "flex", alignItems: "center" }}>
+    <ToggleLabel>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
-      <svg width={40} height={24} aria-hidden="true" style={{ marginRight: 4 }}>
-        <StyledRect
-          x={4}
-          y={4}
-          width={32}
-          height={16}
-          rx={8}
-          //Todo: Should this be the same color when selected/unselected?
-          //The visual feedback of unselected/deselected is perhaps helpful?
-          //But to the visually capable it is perhaps uglier?
-          //IMO they should be the same background color so I am replacing the original code...
-          // css={{ fill: state.isSelected ? "$primary" : "$muted" }}
-          css={{ fill: "$primary" }}
+      <Any
+        as="svg"
+        width={40 * size}
+        height={24 * size}
+        aria-hidden="true"
+        css={{
+          marginRight: 4,
+        }}
+      >
+        <Any
+          as="rect"
+          x={4 * size}
+          y={4 * size}
+          width={32 * size}
+          height={16 * size}
+          rx={8 * size}
+          css={{
+            fill: "$primary",
+            stroke: "$dark",
+            [`.${darkTheme} &`]: {
+              stroke: "$light",
+            },
+          }}
         />
-        <StyledCircle
-          cx={state.isSelected ? 28 : 12}
-          cy={12}
-          r={5}
+        <Any
+          as="circle"
+          cx={state.isSelected ? 28 * size : 12 * size}
+          cy={12 * size}
+          r={5 * size}
           css={{ fill: "$light" }}
         />
         {isFocusVisible && (
-          <StyledRect
-            x={1}
-            y={1}
-            width={38}
-            height={22}
-            rx={11}
+          <Any
+            as="rect"
+            x={4 * size}
+            y={4 * size}
+            width={32 * size}
+            height={16 * size}
+            rx={8 * size}
             fill="none"
             css={{
-              stroke: "$focusRingColor",
-              modes: {
-                dark: {
-                  stroke: "$dark",
-                },
-              },
+              strokeWidth: "$sizes$2",
+              stroke: "$focusRing",
             }}
-            strokeWidth={2}
           />
         )}
-      </svg>
+      </Any>
       {props.children}
-    </label>
+    </ToggleLabel>
   );
 }

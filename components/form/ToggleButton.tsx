@@ -1,7 +1,12 @@
+//UTILS
+import { useRef } from "react";
 import { useToggleButton } from "@react-aria/button";
 import { useToggleState } from "@react-stately/toggle";
-import { useRef, forwardRef } from "react";
+
+//MODELS
 import { Props } from "../../models/Props";
+
+//COMPONENTS
 import { Button } from "./Button";
 
 //Todo: add pressed/active styles?

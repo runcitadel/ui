@@ -1,4 +1,9 @@
+//UTILS
+import { useState } from "react";
+import { useToggleState } from "@react-stately/toggle";
+
 //COMPONENTS
+import { Box } from "../components/layout/Box";
 import { Button } from "../components/form/Button";
 import { Checkbox } from "../components/form/CheckBox";
 import { Dialog } from "../components/layout/Dialog";
@@ -13,56 +18,107 @@ import { ThemeToggle } from "../components/layout/ThemeToggle";
 import { Props } from "../models/Props";
 
 export default function App(props: Props) {
+  const checkboxState = useToggleState();
+  const switchState = useToggleState();
+  const [textFieldValue, setTextFieldValue] = useState("");
+  const [textField2Value, setTextField2Value] = useState("");
+  const [textField3Value, setTextField3Value] = useState("");
+  const [textField4Value, setTextField4Value] = useState("");
   return (
     <>
       <Flex
-        css={{
-          px: "$3",
-          flexDirection: "column",
-          justifyContent: "space-evenly",
-        }}
+        css={{ jc: "space-between", ai: "center", mb: "$5", width: "100%" }}
       >
-        <Flex css={{ justifyContent: "space-around", alignItems: "center" }}>
-          <ThemeToggle />
-          <Text as="h1"> Citadel</Text>
-        </Flex>
-        <Button>Button</Button>
-        <Button filled="primary">Primary Button</Button>
-        <Button filled="secondary">Secondary Button</Button>
-        <Button filled="tertiary">Tertiary Button</Button>
-
-        <Checkbox label="Checkbox">CheckBox</Checkbox>
-        <Switch label="Switch">Switch</Switch>
-        <TextField label="TextField" placeholder="TextField..." />
-        <SearchField
-          label="SearchField (TextField w/Clear button)"
-          placeholder="- SearchFieldTextField w/Clear button?"
-        />
-        <Dialog
-          title="Design page dialog title!!"
-          triggerText="Open dialog"
-          submitText="oooook"
-        >
-          Design page dialog content..
-          <br />
-          More...
-          <br />
-          ..
-          <br />
-        </Dialog>
+        <ThemeToggle />
+        <Text as="h1" css={{ pl: "$1" }}>
+          Citadel <br /> Design <br /> System <br />
+        </Text>
       </Flex>
+
+      <Button css={{ mb: "$5" }}>Button</Button>
+      <Button filled="primary" css={{ mb: "$5" }}>
+        Primary Button
+      </Button>
+      <Button filled="secondary" css={{ mb: "$5" }}>
+        Secondary Button
+      </Button>
+      <Button filled="tertiary" css={{ mb: "$5" }}>
+        Tertiary Button
+      </Button>
+      <Button filled="transparent" css={{ mb: "$5" }}>
+        Transparent Button
+      </Button>
+      <Box css={{ mb: "$5" }}>
+        <Button filled="default" css={{ br: "$round" }}>
+          Round
+          <br />
+          Button
+        </Button>
+      </Box>
+
+      <Checkbox
+        label="Checkbox"
+        state={checkboxState}
+        css={{ mb: "$5" }}
+        size={2}
+      >
+        CheckBox
+      </Checkbox>
+      <Switch label="Switch" state={switchState} css={{ mb: "$5" }}>
+        Switch
+      </Switch>
+      <TextField
+        label="TextField w/ Description"
+        placeholder="placeholder..."
+        value={textFieldValue}
+        onChange={(x: string) => setTextFieldValue(x)}
+        css={{ mb: "$5" }}
+        description="TextField description TextField description TextField description TextField description"
+      />
+      <TextField
+        label="Login Password"
+        type="password"
+        placeholder="placeholder..."
+        value={textField2Value}
+        onChange={(x: string) => setTextField2Value(x)}
+        required={true}
+        css={{ mb: "$5" }}
+      />
+      <TextField
+        label="New Password"
+        newPassword
+        type="password"
+        placeholder="placeholder..."
+        value={textField3Value}
+        onChange={(x: string) => setTextField3Value(x)}
+        required={true}
+        css={{ mb: "$5" }}
+      />
+      <TextField
+        label="DisabledTextField"
+        placeholder="placeholder..."
+        value={textField4Value}
+        onChange={(x: string) => setTextField4Value(x)}
+        disabled={true}
+        css={{ mb: "$5" }}
+      />
+      <SearchField
+        label="SearchField"
+        placeholder="placeholder..."
+        css={{ mb: "$5" }}
+      />
+      <Dialog
+        title="Design page dialog title!!"
+        triggerText="Open dialog"
+        submitText="oooook"
+      >
+        Design page dialog content..
+        <br />
+        More...
+        <br />
+        ..
+        <br />
+      </Dialog>
     </>
   );
 }
-
-// Below is an example of how to protect a page.
-// Currently index.tsx is the only page I am worried about protecting.
-// This is file is for the "staging" of all components which will be used in the application.
-
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       protected: true,
-//     },
-//   };
-// }

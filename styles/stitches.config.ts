@@ -42,16 +42,19 @@ export const {
       hiContrast: "$dark",
       loContrast: "$light",
 
-      //I am not positive that all of the colors defined below are being used
-      //But please don't delete this one, anyways! The focus ring is ess
-      focusRingColor: "$light",
+      focusRing: "$dark",
 
-      canvas: "hsl(0 0% 93%)",
+      canvasText: "$dark",
+      canvas: "$light",
+
+      shadow: "hsl(210deg 38% 21% / 0.34)",
+
+      //I am not positive if the colors defined below are necessary or not
+
+      //Todo: define panel color and set different one for darkMode to be used for the backgound on cards
       panel: "white",
-      clear: "hsla(0, 0%, 0%, 0)",
       transparentPanel: "hsl(0 0% 0% / 97%)",
-      shadowLight: "210deg 38% 21%",
-      shadowDark: "202deg 26% 31%",
+      clear: "hsla(0, 0%, 0%, 0)",
     },
     space: scales,
     sizes: scales,
@@ -70,26 +73,26 @@ export const {
       4: "400",
       max: "999",
     },
-    boxShadows: {
-      1: `0.3px 0.5px 0.7px hsl($shadowLight / 0.34),
-        0.4px 0.8px 1px -1.2px hsl($shadowLight / 0.34),
-        1px 2px 2.5px -2.5px hsl($shadowLight / 0.34)`,
-      2: `0.3px 0.5px 0.7px hsl($shadowLight / 0.36),
-        0.8px 1.6px 2px -0.8px hsl($shadowLight / 0.36),
-        2.1px 4.1px 5.2px -1.7px hsl($shadowLight / 0.36),
-        5px 10px 12.6px -2.5px hsl($shadowLight / 0.36)`,
-      3: `0.3px 0.5px 0.7px hsl($shadowLight / 0.34),
-        1.5px 2.9px 3.7px -0.4px hsl($shadowLight / 0.34),
-        2.7px 5.4px 6.8px -0.7px hsl($shadowLight / 0.34),
-        4.5px 8.9px 11.2px -1.1px hsl($shadowLight / 0.34),
-        7.1px 14.3px 18px -1.4px hsl($shadowLight / 0.34),
-        11.2px 22.3px 28.1px -1.8px hsl($shadowLight / 0.34),
-        17px 33.9px 42.7px -2.1px hsl($shadowLight / 0.34),
-        25px 50px 62.9px -2.5px hsl($shadowLight / 0.34)`,
-      // inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
-      // popper: `0 0 1px $colors$borderStill, $shadows$lg`,
-      // base: "$1",
-      // "base:hover": "$2, $2",
+    shadows: {
+      1: `0.3px 0.5px 0.7px $colors$shadow,
+        0.8px 1.6px 2px -0.8px $colors$shadow`,
+      2: `0.3px 0.5px 0.7px $colors$shadow,
+        0.8px 1.6px 2px -0.8px $colors$shadow,
+        2.1px 3.1px 4.2px -1.7px $colors$shadow,
+        2.8px 3.4px 3.6px -2.5px $colors$shadow`,
+      3: `0.3px 0.5px 0.7px $colors$shadow,
+        1.5px 2.9px 3.7px -0.4px $colors$shadow,
+        2.7px 5.4px 6.8px -0.7px $colors$shadow,
+        4.5px 8.9px 11.2px -1.1px $colors$shadow,
+        7.1px 14.3px 18px -1.4px $colors$shadow,
+        11.2px 22.3px 28.1px -1.8px $colors$shadow,
+        17px 33.9px 42.7px -2.1px $colors$shadow,
+        25px 50px 62.9px -2.5px $colors$shadow`,
+      inner$1: "inset $shadows$1",
+      inner$2: "inset $shadows$2",
+      inner$3: "inset $shadows$3",
+      base: "$2",
+      "base:hover": "$1",
       // none: "none",
     },
     fonts: {
@@ -282,7 +285,7 @@ export const {
       backgroundImage: `linear-gradient(${value})`,
     }),
 
-    transparent: (value: number) => ({
+    transparentBackground: (value: number) => ({
       backgroundColor: `rgba(0, 0, 0, ${
         value >= 0 || value <= 1 ? value : "0%"
       })`,
@@ -290,17 +293,12 @@ export const {
   },
 });
 
-//Todo: Pick out what we should use as variants
-
 export const darkTheme = createTheme("dark", {
-  //   ...globalCss,
-  //   ...css,
-  //   ...getCssText,
-  //   ...config,
   colors: {
-    // ...theme.colors,
     text: "$light",
     altText: "$dark",
     background: "$dark",
+    shadow: "hsl(202deg 26% 31% / 0.34)",
+    focusRing: "$light",
   },
 });

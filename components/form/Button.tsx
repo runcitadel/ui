@@ -1,56 +1,89 @@
-import React from "react";
-import { styled } from "../../styles/stitches.config";
+//UTILS
+import { useRef } from "react";
+import { darkTheme, styled } from "../../styles/stitches.config";
 import { useButton } from "@react-aria/button";
+
+//MODELS
 import { Props } from "../../models/Props";
 
-const ButtonStyled = styled("button", {
+export const BaseButton = styled("button", {
+  borderWidth: "$sizes$1",
+  borderStyle: "solid",
+  borderColor: "$dark",
   cursor: "pointer",
-  backgroundColor: "$dark",
-  color: "$light",
   fontSize: "$4",
-  padding: "$2 $3",
-  border: "1px solid $muted",
-  borderColor: "$muted",
-  borderRadius: "$2",
+  padding: "$4 $5",
   boxShadow: "$2",
-  ":hover": {
-    boxShadow: "$3",
+  "&:focus-visible": {
+    outlineColor: "$focusRing",
+    outlineWidth: "$sizes$2",
+    outlineStyle: "solid",
+  },
+  "&:hover": {
+    boxShadow: "$1",
+  },
+  "&:active": {
+    transform: "translateY(3px)",
+  },
+  [`.${darkTheme} &`]: {
+    borderColor: "$light",
   },
   variants: {
     filled: {
+      default: {
+        "&:focus-visible": {
+          outlineColor: "$secondary",
+          outlineWidth: "$sizes$2",
+          outlineStyle: "solid",
+          [`.${darkTheme} &`]: {
+            outlineColor: "$focusRing",
+          },
+        },
+        color: "$light",
+        bc: "$dark",
+      },
       primary: {
+        color: "$light",
         bc: "$primary",
       },
       secondary: {
+        color: "$light",
         bc: "$secondary",
-        color: "$darker",
       },
       tertiary: {
-        bc: "$tertiary",
         color: "$dark",
+        bc: "$tertiary",
+      },
+      transparent: {
+        transparentBackground: 0,
+        color: "$dark",
+        [`.${darkTheme} &`]: {
+          color: "$light",
+        },
       },
     },
-    round: {
-      true: {
+    borderRadius: {
+      normal: {
+        borderRadius: "$2",
+      },
+      round: {
         borderRadius: "$round",
       },
     },
-    transparent: {
-      true: {
-        border: "none",
-        background: "$transparent",
-      },
-    },
+  },
+  defaultVariants: {
+    filled: "default",
+    borderRadius: "normal",
   },
 });
 
 export function Button(props: Props) {
-  let ref = React.useRef(null);
+  let ref = useRef(null);
   let { buttonProps } = useButton(props, ref);
 
   return (
-    <ButtonStyled {...props} {...buttonProps} ref={ref}>
+    <BaseButton {...props} {...buttonProps} disabled={props.disabled} ref={ref}>
       {props.children}
-    </ButtonStyled>
+    </BaseButton>
   );
 }

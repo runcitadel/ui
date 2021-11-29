@@ -8,6 +8,7 @@ import { Props } from "../../models/Props";
 
 //COMPONENTS
 import { Box } from "../layout/Box";
+import { BaseTextField, BaseTextFieldLabel } from "./TextField";
 
 export function SearchField(props: Props) {
   let { label } = props;
@@ -16,9 +17,16 @@ export function SearchField(props: Props) {
   let { labelProps, inputProps } = useSearchField(props, state, ref);
 
   return (
-    <Box css={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      <label {...labelProps}>{label}</label>
-      <input {...inputProps} ref={ref} />
+    <Box
+      css={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        ...props.css,
+      }}
+    >
+      <BaseTextFieldLabel {...labelProps}>{label}</BaseTextFieldLabel>
+      <BaseTextField {...inputProps} ref={ref} />
     </Box>
   );
 }

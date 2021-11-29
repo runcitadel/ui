@@ -3,6 +3,7 @@ import { OverlayContainer } from "@react-aria/overlays";
 import { useButton } from "@react-aria/button";
 import { useRef } from "react";
 import { Modal } from "./Modal";
+import { BaseButton } from "../form/Button";
 
 type DialogProps = {
   title: string;
@@ -44,9 +45,9 @@ export function Dialog(props: DialogProps) {
 
   return (
     <>
-      <button {...openButtonProps} ref={openButtonRef}>
+      <BaseButton {...openButtonProps} ref={openButtonRef}>
         {triggerText}
-      </button>
+      </BaseButton>
       {state.isOpen && (
         <OverlayContainer>
           <Modal title={title} isOpen onClose={state.close} isDismissable>

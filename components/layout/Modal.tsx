@@ -4,6 +4,8 @@ import { FocusScope } from "@react-aria/focus";
 import { useRef } from "react";
 import { Props } from "../../models/Props";
 import { Box } from "./Box";
+import { Text } from "../typography/Text";
+import { Flex } from "./Flex";
 
 export function Modal(props: Props) {
   let { title, children } = props;
@@ -22,7 +24,7 @@ export function Modal(props: Props) {
   let { dialogProps, titleProps } = useDialog(props, ref);
 
   return (
-    <Box
+    <Flex
       css={{
         position: "fixed",
         zIndex: 100,
@@ -30,8 +32,7 @@ export function Modal(props: Props) {
         left: 0,
         bottom: 0,
         right: 0,
-        background: "$dark",
-        display: "flex",
+        transparentBackground: 0.75,
         alignItems: "center",
         justifyContent: "center",
       }}
@@ -46,15 +47,15 @@ export function Modal(props: Props) {
           css={{
             background: "$light",
             color: "$dark",
-            padding: 30,
+            p: "$3",
           }}
         >
-          <h3 {...titleProps} style={{ marginTop: 0 }}>
+          <Text as="h3" {...titleProps} css={{ marginTop: 0 }}>
             {title}
-          </h3>
+          </Text>
           {children}
         </Box>
       </FocusScope>
-    </Box>
+    </Flex>
   );
 }

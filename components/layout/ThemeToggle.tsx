@@ -5,13 +5,13 @@ import { Button } from "../form/Button";
 import { styled } from "../../styles/stitches.config";
 
 const SunIcon = styled(FaSun, {
-  size: "$6",
+  size: "$7",
   verticalAlign: "center",
   color: "$lightning",
 });
 
 const MoonIcon = styled(FaMoon, {
-  size: "$6",
+  size: "$7",
   verticalAlign: "center",
   color: "$lightning",
 });
@@ -32,8 +32,8 @@ export const ThemeToggle = () => {
   return (
     <Button
       aria-label="switch color mode"
-      onClick={toggleTheme}
-      css={{ p: "$2" }}
+      onPress={toggleTheme}
+      css={{ p: "$5", fontSize: "$1" }}
     >
       {resolvedTheme === "dark" ? <SunIcon /> : <MoonIcon />}
     </Button>
