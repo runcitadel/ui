@@ -1,3 +1,10 @@
+//UTILS
+import { useCitadel } from "../hooks/useCitadel";
+import { useRouter } from "next/router";
+
+//CONTEXT
+import { GlobalContext } from "../contexts/GlobalContext";
+
 //PROVIDERS
 import { SSRProvider } from "@react-aria/ssr";
 import { ThemeProvider } from "next-themes";
@@ -8,14 +15,29 @@ import "../styles/reset.css";
 
 //COMPONENTS
 import Head from "next/head";
+import { Layout } from "../components/layout/Layout";
 
 //MODELS
 import { AppProps } from "next/app";
-import { Layout } from "../components/layout/Layout";
-import { Citadel } from "../lib/Citadel";
 
-export default function App({ Component, pageProps }: AppProps) {
-  console.log(pageProps, "pageProps");
+export default function App({ Component, pageProps, router }: AppProps) {
+  const citadel = useCitadel();
+  const { pathname } = useRouter();
+
+  //Only run re-direct logic client-side
+  if (typeof window !== "undefined") {
+    if (!pageProps?.globalState?.isCitadel && pathname !== "/migrate") {
+      router.push("/migrate");
+    } else if (!pageProps?.globalState?.isRegistered) {
+      router.push("/setup");
+    } else if (
+      pageProps?.protectedRoute &&
+      !pageProps?.globalState?.isValidJwt
+    ) {
+      router.push("/unlock");
+    }
+  }
+
   return (
     <>
       <Head>
@@ -56,9 +78,11 @@ export default function App({ Component, pageProps }: AppProps) {
             light: "light",
           }}
         >
-          <Layout protectedRoute={pageProps.protected}>
-            <Component {...pageProps} />
-          </Layout>
+          <GlobalContext.Provider value={citadel}>
+            <Layout {...pageProps}>
+              <Component {...pageProps} />
+            </Layout>
+          </GlobalContext.Provider>
         </ThemeProvider>
       </SSRProvider>
     </>

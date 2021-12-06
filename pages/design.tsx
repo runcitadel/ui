@@ -1,4 +1,5 @@
 //UTILS
+import { citadelStatus } from "../lib/citadelStatus";
 import { useState } from "react";
 import { useToggleState } from "@react-stately/toggle";
 
@@ -8,6 +9,7 @@ import { Button } from "../components/form/Button";
 import { Checkbox } from "../components/form/CheckBox";
 import { Dialog } from "../components/layout/Dialog";
 import { Flex } from "../components/layout/Flex";
+import { Link } from "../components/typography/Link";
 import { SearchField } from "../components/form/SearchField";
 import { Switch } from "../components/form/Switch";
 import { TextField } from "../components/form/TextField";
@@ -35,6 +37,7 @@ export default function App(props: Props) {
         </Text>
       </Flex>
 
+      <Link href="/">Link..</Link>
       <Button css={{ mb: "$5" }}>Button</Button>
       <Button filled="primary" css={{ mb: "$5" }}>
         Primary Button
@@ -121,4 +124,8 @@ export default function App(props: Props) {
       </Dialog>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  return { props: await citadelStatus() };
 }

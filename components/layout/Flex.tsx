@@ -1,6 +1,6 @@
 import { styled } from "../../styles/stitches.config";
-import { Box } from "./Box";
 
-export const Flex = styled(Box, {
+export const Flex = styled("div", {
   display: "flex",
+  width: "100%",
 });

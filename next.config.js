@@ -2,6 +2,11 @@
 const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
 
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ **/
 module.exports = withPWA({
   pwa: {
     /*

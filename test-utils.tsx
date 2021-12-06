@@ -4,12 +4,14 @@ import { ThemeProvider } from "next-themes";
 import { darkTheme } from "./styles/stitches.config";
 
 const AllProviders = ({ children }: { children?: React.ReactNode }) => (
-  <ThemeProvider>
-    attribute="class" defaultTheme="system" value=
-    {{
+  <ThemeProvider
+    attribute="class"
+    defaultTheme="system"
+    value={{
       dark: darkTheme.className,
       light: "light",
     }}
+  >
     {children}
   </ThemeProvider>
 );

@@ -60,6 +60,7 @@ export function TextField(props: Props) {
     required = false,
     invalid = false,
     showErrors = true,
+    centerLabel = false,
     label,
   } = props;
 
@@ -93,7 +94,9 @@ export function TextField(props: Props) {
 
   return (
     <Flex css={{ flexDirection: "column", width: "100%" }}>
-      <Flex css={{ jc: "space-between", ai: "center" }}>
+      <Flex
+        css={{ jc: centerLabel ? "center" : "space-between", ai: "center" }}
+      >
         <BaseTextFieldLabel {...labelProps}>{label}</BaseTextFieldLabel>
         {showErrors && propsCopy.errorMessage ? (
           <Box
