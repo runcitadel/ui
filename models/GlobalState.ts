@@ -1,6 +1,5 @@
 export type GlobalState = {
   features: string[];
-  isCitadel: boolean;
   isOnline: {
     manager: boolean;
     middleware: boolean;

@@ -2828,13 +2828,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@runcitadel/sdk@npm:0.0.1-beta.13":
-  version: 0.0.1-beta.13
-  resolution: "@runcitadel/sdk@npm:0.0.1-beta.13"
+"@runcitadel/sdk@npm:0.0.1-beta.14":
+  version: 0.0.1-beta.14
+  resolution: "@runcitadel/sdk@npm:0.0.1-beta.14"
   peerDependencies:
     "@types/react": ^17.0.37
     react: ^17.0.2
-  checksum: cffd07d77f52edeca100c7c332da579d387f32588baf1b76b048a614453b50f8c018da4b6d5af0478e20940c7c55c647a729fd6b26a5d10de4ce75cc87161c73
+  checksum: b1f4b2de7d61adbd7651418a99bbc783db52c575f7cc47d387d9e90e50b5590518e451b3a875bb8f786b2692659f1e16d4e082ea1de9c7f6bec8c6584078db5c
   languageName: node
   linkType: hard
 
@@ -7410,7 +7410,7 @@ __metadata:
   dependencies:
     "@bitcoin-design/bitcoin-icons-react": ^0.1.8
     "@react-stately/toggle": ^3.2.3
-    "@runcitadel/sdk": 0.0.1-beta.13
+    "@runcitadel/sdk": 0.0.1-beta.14
     "@stitches/react": ^1.2.6
     "@testing-library/jest-dom": ^5.16.1
     "@testing-library/react": ^12.1.2

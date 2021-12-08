@@ -1,6 +1,5 @@
 //UTILS
 import { useCitadel } from "@runcitadel/sdk/browser/useCitadel";
-import { useRouter } from "next/router";
 
 //CONTEXT
 import { GlobalContext } from "../contexts/GlobalContext";
@@ -22,13 +21,10 @@ import { AppProps } from "next/app";
 
 export default function App({ Component, pageProps, router }: AppProps) {
   const citadel = useCitadel();
-  const { pathname } = useRouter();
 
   //Only run re-direct logic client-side
   if (typeof window !== "undefined") {
-    if (!pageProps?.globalState?.isCitadel && pathname !== "/migrate") {
-      router.push("/migrate");
-    } else if (!pageProps?.globalState?.isRegistered) {
+    if (!pageProps?.globalState?.isRegistered) {
       router.push("/setup");
     } else if (
       pageProps?.protectedRoute &&
