@@ -1,5 +1,5 @@
 //UTILS
-import { useCitadel } from "../hooks/useCitadel";
+import { useCitadel } from "@runcitadel/sdk/browser/useCitadel";
 import { useRouter } from "next/router";
 
 //CONTEXT
