@@ -2,7 +2,6 @@
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { citadelStatus } from "../lib/citadelStatus";
-import type Citadel from "@runcitadel/sdk/browser/platform/browser/citadel";
 
 //COMPONENTS
 import { Box } from "../components/layout/Box";
@@ -26,7 +25,7 @@ export default function Unlock(props: { isTotpEnabled: boolean }) {
   const submissionHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (citadel)
-      (citadel as Citadel)
+      citadel
         .login(password, totpToken)
         .then((res) => {
           //Todo: throw success modal
