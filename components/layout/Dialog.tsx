@@ -1,47 +1,47 @@
-import { useOverlayTriggerState } from "@react-stately/overlays";
-import { OverlayContainer } from "@react-aria/overlays";
-import { useButton } from "@react-aria/button";
-import { useRef } from "react";
-import { Modal } from "./Modal";
-import { BaseButton } from "../form/Button";
+import { useOverlayTriggerState } from '@react-stately/overlays'
+import { OverlayContainer } from '@react-aria/overlays'
+import { useButton } from '@react-aria/button'
+import { useRef } from 'react'
+import { Modal } from './Modal'
+import { BaseButton } from '../form/Button'
 
 type DialogProps = {
-  title: string;
-  triggerText: string;
-  submitText: string;
+  title: string
+  triggerText: string
+  submitText: string
   //Todo: should we define types for this anon function and/or children??
-  handleSubmission?: () => void;
-  children?: any;
-};
+  handleSubmission?: () => void
+  children?: any
+}
 
 export function Dialog(props: DialogProps) {
   const {
-    title = "Dialog Title",
-    submitText = "Submit",
-    triggerText = "Open Dialog",
+    title = 'Dialog Title',
+    submitText = 'Submit',
+    triggerText = 'Open Dialog',
     handleSubmission,
-  } = props;
+  } = props
 
-  let state = useOverlayTriggerState({});
-  let openButtonRef = useRef(null);
-  let closeButtonRef = useRef(null);
+  const state = useOverlayTriggerState({})
+  const openButtonRef = useRef(null)
+  const closeButtonRef = useRef(null)
 
   // useButton ensures that focus management is handled correctly,
   // across all browsers. Focus is restored to the button once the
   // dialog closes.
-  let { buttonProps: openButtonProps } = useButton(
+  const { buttonProps: openButtonProps } = useButton(
     {
       onPress: () => state.open(),
     },
     openButtonRef
-  );
+  )
 
-  let { buttonProps: closeButtonProps } = useButton(
+  const { buttonProps: closeButtonProps } = useButton(
     {
       onPress: () => state.close(),
     },
     closeButtonRef
-  );
+  )
 
   return (
     <>
@@ -51,7 +51,7 @@ export function Dialog(props: DialogProps) {
       {state.isOpen && (
         <OverlayContainer>
           <Modal title={title} isOpen onClose={state.close} isDismissable>
-            <form style={{ display: "flex", flexDirection: "column" }}>
+            <form style={{ display: 'flex', flexDirection: 'column' }}>
               {props.children}
               <button
                 {...closeButtonProps}
@@ -66,5 +66,5 @@ export function Dialog(props: DialogProps) {
         </OverlayContainer>
       )}
     </>
-  );
+  )
 }

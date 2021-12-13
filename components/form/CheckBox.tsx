@@ -1,30 +1,27 @@
 //UTILS
-import { useRef } from "react";
-import { darkTheme, styled } from "../../styles/stitches.config";
-import { useCheckbox } from "@react-aria/checkbox";
-import { useFocusRing } from "@react-aria/focus";
-
-//MODELS
-import { Props } from "../../models/Props";
+import { useRef } from 'react'
+import { darkTheme, styled } from '../../styles/stitches.config'
+import { useCheckbox } from '@react-aria/checkbox'
+import { useFocusRing } from '@react-aria/focus'
 
 //COMPONENTS
-import { Any } from "../layout/Any";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { Any } from '../layout/Any'
+import { VisuallyHidden } from '@react-aria/visually-hidden'
 
-export const ToggleLabel = styled("label", {
-  display: "flex",
-  alignItems: "center",
-  cursor: "pointer",
-  "&:active": {
-    transform: "translateY(3px)",
+export const ToggleLabel = styled('label', {
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  '&:active': {
+    transform: 'translateY(3px)',
   },
-});
+})
 
-export function Checkbox(props: Props) {
-  let { state, size = 2 } = props;
-  let ref = useRef(null);
-  let { inputProps } = useCheckbox(props, state, ref);
-  let { isFocusVisible, focusProps } = useFocusRing();
+export function Checkbox(props: React.ComponentProps<any>) {
+  let { state, size = 2 } = props
+  let ref = useRef(null)
+  let { inputProps } = useCheckbox(props, state, ref)
+  let { isFocusVisible, focusProps } = useFocusRing()
 
   return (
     <ToggleLabel>
@@ -37,7 +34,7 @@ export function Checkbox(props: Props) {
         height={24 * size}
         aria-hidden="true"
         css={{
-          marginRight: "$2",
+          marginRight: '$2',
         }}
       >
         <Any
@@ -48,16 +45,16 @@ export function Checkbox(props: Props) {
           width={15 * size}
           height={15 * size}
           css={{
-            rx: "$radii$3",
-            fill: "$primary",
-            stroke: "$dark",
-            "&:active": {
-              rx: "$radii$3",
-              strokeWidth: "$sizes$2",
-              stroke: "$focusRing",
+            rx: '$radii$3',
+            fill: '$primary',
+            stroke: '$dark',
+            '&:active': {
+              rx: '$radii$3',
+              strokeWidth: '$sizes$2',
+              stroke: '$focusRing',
             },
             [`.${darkTheme} &`]: {
-              stroke: "$muted",
+              stroke: '$muted',
             },
           }}
         />
@@ -74,8 +71,8 @@ export function Checkbox(props: Props) {
               strokeDashArray="270"
               strokeDashOffset="270"
               css={{
-                fill: "$secondary",
-                stroke: "$light",
+                fill: '$secondary',
+                stroke: '$light',
               }}
             />
             <Any
@@ -89,8 +86,8 @@ export function Checkbox(props: Props) {
               strokeDashArray="270"
               strokeDashOffset="270"
               css={{
-                fill: "none",
-                stroke: "$light",
+                fill: 'none',
+                stroke: '$light',
               }}
             />
           </>
@@ -104,14 +101,14 @@ export function Checkbox(props: Props) {
             height={15 * size}
             fill="none"
             css={{
-              rx: "$radii$3",
-              strokeWidth: "$sizes$2",
-              stroke: "$focusRing",
+              rx: '$radii$3',
+              strokeWidth: '$sizes$2',
+              stroke: '$focusRing',
             }}
           />
         )}
       </Any>
       {props.children}
     </ToggleLabel>
-  );
+  )
 }

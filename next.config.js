@@ -1,6 +1,6 @@
 // eslint-disable @typescript-eslint/no-var-requires
-const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
 // @ts-check
 
@@ -16,8 +16,8 @@ module.exports = withPWA({
         
       Service worker functionality should be tested in the staging environment instead.
     */
-    disable: process.env.NODE_ENV === "development",
-    dest: "public",
+    disable: process.env.NODE_ENV === 'development',
+    dest: 'public',
     runtimeCaching,
   },
-});
+})

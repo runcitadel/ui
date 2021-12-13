@@ -1,6 +1,6 @@
-import { styled } from "../../styles/stitches.config";
+import { styled } from '../../styles/stitches.config'
 
-export const Flex = styled("div", {
-  display: "flex",
-  width: "100%",
-});
+export const Flex = styled('div', {
+  display: 'flex',
+  width: '100%',
+})

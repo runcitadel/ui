@@ -1,89 +1,109 @@
 //UTILS
-import { useRef } from "react";
-import { darkTheme, styled } from "../../styles/stitches.config";
-import { useButton } from "@react-aria/button";
+import { useRef } from 'react'
+import { darkTheme, styled } from '../../styles/stitches.config'
+import { useButton } from '@react-aria/button'
 
-//MODELS
-import { Props } from "../../models/Props";
+export const BaseButton = styled('button', {
+  borderWidth: '$sizes$1',
+  borderStyle: 'solid',
+  borderColor: '$dark',
+  boxShadow: '$2',
+  cursor: 'pointer',
 
-export const BaseButton = styled("button", {
-  borderWidth: "$sizes$1",
-  borderStyle: "solid",
-  borderColor: "$dark",
-  cursor: "pointer",
-  fontSize: "$4",
-  padding: "$4 $5",
-  boxShadow: "$2",
-  "&:focus-visible": {
-    outlineColor: "$focusRing",
-    outlineWidth: "$sizes$2",
-    outlineStyle: "solid",
+  '&:focus-visible': {
+    outlineColor: '$focusRing',
+    outlineWidth: '$sizes$2',
+    outlineStyle: 'solid',
   },
-  "&:hover": {
-    boxShadow: "$1",
+  '&:hover': {
+    boxShadow: '$1',
   },
-  "&:active": {
-    transform: "translateY(3px)",
+  '&:active': {
+    transform: 'translateY(3px)',
   },
   [`.${darkTheme} &`]: {
-    borderColor: "$light",
+    borderColor: '$light',
   },
   variants: {
     filled: {
       default: {
-        "&:focus-visible": {
-          outlineColor: "$secondary",
-          outlineWidth: "$sizes$2",
-          outlineStyle: "solid",
+        '&:focus-visible': {
+          outlineColor: '$secondary',
+          outlineWidth: '$sizes$2',
+          outlineStyle: 'solid',
           [`.${darkTheme} &`]: {
-            outlineColor: "$focusRing",
+            outlineColor: '$focusRing',
           },
         },
-        color: "$light",
-        bc: "$dark",
+        color: '$light',
+        bc: '$dark',
       },
       primary: {
-        color: "$light",
-        bc: "$primary",
+        color: '$light',
+        bc: '$primary',
       },
       secondary: {
-        color: "$light",
-        bc: "$secondary",
+        color: '$light',
+        bc: '$secondary',
       },
       tertiary: {
-        color: "$dark",
-        bc: "$tertiary",
+        color: '$dark',
+        bc: '$tertiary',
       },
       transparent: {
         transparentBackground: 0,
-        color: "$dark",
+        color: '$dark',
         [`.${darkTheme} &`]: {
-          color: "$light",
+          color: '$light',
+        },
+      },
+      success: {
+        color: '$dark',
+        bc: '$success',
+        border: 'none',
+      },
+    },
+    size: {
+      sm: {
+        fontSize: '$3',
+        padding: '$2 $3',
+        '@bp2': {
+          fontSize: '$4',
+          padding: '$3 $4',
+        },
+      },
+      md: {
+        fontSize: '$4',
+        padding: '$4 $5',
+        '@bp2': {
+          fontSize: '$5',
+          padding: '$5 $6',
         },
       },
     },
     borderRadius: {
       normal: {
-        borderRadius: "$2",
+        borderRadius: '$2',
       },
       round: {
-        borderRadius: "$round",
+        borderRadius: '$round',
       },
     },
   },
   defaultVariants: {
-    filled: "default",
-    borderRadius: "normal",
+    filled: 'default',
+    borderRadius: 'normal',
+    size: 'md',
   },
-});
+})
 
-export function Button(props: Props) {
-  let ref = useRef(null);
-  let { buttonProps } = useButton(props, ref);
+export function Button(props: React.ComponentProps<any>) {
+  let ref = useRef(null)
+  let { buttonProps } = useButton(props, ref)
 
   return (
     <BaseButton {...props} {...buttonProps} disabled={props.disabled} ref={ref}>
       {props.children}
     </BaseButton>
-  );
+  )
 }

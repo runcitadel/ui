@@ -1,30 +1,37 @@
 //UTILS
-import { ReactElement } from "react";
-import { useLocale } from "@react-aria/i18n";
+import { ReactElement } from 'react'
+import { useLocale } from '@react-aria/i18n'
 
 //COMPONENTS
-import { Flex } from "./Flex";
+import { Flex } from './Flex'
+import { ThemeToggle } from './ThemeToggle'
+import { CSS } from '@stitches/react'
 
 export function Layout({
   children,
+  css,
 }: {
-  children: ReactElement<any, any> | ReactElement<any, any>[];
+  children: JSX.Element | JSX.Element[]
+  css?: CSS
 }) {
-  let { locale, direction } = useLocale();
+  const { locale, direction } = useLocale()
 
   return (
     <Flex
       css={{
-        flexDirection: "column",
-        ai: "flex-start",
-        jc: "flex-start",
-        padding: "$6",
+        flexDirection: 'column',
+        ai: 'flex-start',
+        jc: 'space-between',
+        padding: '$6',
+        minHeight: '100vh',
+        ...css,
       }}
       lang={locale}
       dir={direction}
     >
-      {/* Todo: Wrap children in layout component. Move theme toggle button off pages to here, add navigation, etc */}
+      <ThemeToggle />
+      {/* Todo: Wrap children in layout components.. already added theme toggle, but add navigation, etc */}
       {children}
     </Flex>
-  );
+  )
 }

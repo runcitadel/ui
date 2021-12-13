@@ -1,7 +1,7 @@
-import React from "react";
-import { render, RenderOptions } from "@testing-library/react";
-import { ThemeProvider } from "next-themes";
-import { darkTheme } from "./styles/stitches.config";
+import React from 'react'
+import { render, RenderOptions } from '@testing-library/react'
+import { ThemeProvider } from 'next-themes'
+import { darkTheme } from './styles/stitches.config'
 
 const AllProviders = ({ children }: { children?: React.ReactNode }) => (
   <ThemeProvider
@@ -9,14 +9,14 @@ const AllProviders = ({ children }: { children?: React.ReactNode }) => (
     defaultTheme="system"
     value={{
       dark: darkTheme.className,
-      light: "light",
+      light: 'light',
     }}
   >
     {children}
   </ThemeProvider>
-);
+)
 
 const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
-  render(ui, { wrapper: AllProviders, ...options });
+  render(ui, { wrapper: AllProviders, ...options })
 
-export { customRender as render };
+export { customRender as render }

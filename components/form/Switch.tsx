@@ -1,22 +1,21 @@
 //UTILS
-import { useRef } from "react";
-import { darkTheme } from "../../styles/stitches.config";
+import { useRef } from 'react'
+import { darkTheme } from '../../styles/stitches.config'
 
 //ACCESSIBILITY
-import { useFocusRing } from "@react-aria/focus";
-import { useSwitch } from "@react-aria/switch";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { useFocusRing } from '@react-aria/focus'
+import { useSwitch } from '@react-aria/switch'
+import { VisuallyHidden } from '@react-aria/visually-hidden'
 
 //COMPONENTS
-import { Any } from "../layout/Any";
-import { Props } from "../../models/Props";
-import { ToggleLabel } from "./CheckBox";
+import { Any } from '../layout/Any'
+import { ToggleLabel } from './CheckBox'
 
-export function Switch(props: Props) {
-  let { state, size = 2 } = props;
-  let ref = useRef(null);
-  let { inputProps } = useSwitch(props, state, ref);
-  let { isFocusVisible, focusProps } = useFocusRing();
+export function Switch(props: React.ComponentProps<any>) {
+  let { state, size = 2 } = props
+  let ref = useRef(null)
+  let { inputProps } = useSwitch(props, state, ref)
+  let { isFocusVisible, focusProps } = useFocusRing()
 
   return (
     <ToggleLabel>
@@ -40,10 +39,10 @@ export function Switch(props: Props) {
           height={16 * size}
           rx={8 * size}
           css={{
-            fill: "$primary",
-            stroke: "$dark",
+            fill: '$primary',
+            stroke: '$dark',
             [`.${darkTheme} &`]: {
-              stroke: "$light",
+              stroke: '$light',
             },
           }}
         />
@@ -52,7 +51,7 @@ export function Switch(props: Props) {
           cx={state.isSelected ? 28 * size : 12 * size}
           cy={12 * size}
           r={5 * size}
-          css={{ fill: "$light" }}
+          css={{ fill: '$light' }}
         />
         {isFocusVisible && (
           <Any
@@ -64,13 +63,13 @@ export function Switch(props: Props) {
             rx={8 * size}
             fill="none"
             css={{
-              strokeWidth: "$sizes$2",
-              stroke: "$focusRing",
+              strokeWidth: '$sizes$2',
+              stroke: '$focusRing',
             }}
           />
         )}
       </Any>
       {props.children}
     </ToggleLabel>
-  );
+  )
 }

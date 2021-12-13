@@ -32,6 +32,10 @@ in the console.
 
 Manually run the linter.
 
+### `yarn format`
+
+Manually run prettier.
+
 ### `yarn start`
 
 Run a Next.JS production server.

@@ -1,116 +1,103 @@
 //UTILS
-import { useContext, useState } from "react";
-import { useRouter } from "next/router";
-import { citadelStatus } from "../lib/citadelStatus";
+import { initStateAndAuth } from '../lib/initStateAndAuth'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { withSessionSsr } from '../lib/withSession'
 
 //COMPONENTS
-import { Box } from "../components/layout/Box";
-import { Button } from "../components/form/Button";
-import { Flex } from "../components/layout/Flex";
-import Image from "next/image";
-import { Text } from "../components/typography/Text";
-import { TextField } from "../components/form/TextField";
-import { ThemeToggle } from "../components/layout/ThemeToggle";
+import { Box } from '../components/layout/Box'
+import { Button } from '../components/form/Button'
+import { Flex } from '../components/layout/Flex'
+import Image from 'next/image'
+import { Layout } from '../components/layout/Layout'
+import { Text } from '../components/typography/Text'
+import { TextField } from '../components/form/TextField'
 
-//CONTEXT
-import { GlobalContext } from "../contexts/GlobalContext";
+//MODELS
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
-export default function Unlock(props: { isTotpEnabled: boolean }) {
-  const { isTotpEnabled } = props;
-  const router = useRouter();
-  const citadel = useContext(GlobalContext);
-  const [password, setPassword] = useState("");
-  const [totpToken, setTotpToken] = useState("");
+export const getServerSideProps: GetServerSideProps = withSessionSsr(
+  async (context) => {
+    return await initStateAndAuth(context, { dataSources: ['isTotpEnabled'] })
+  }
+)
+
+type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>
+
+export default function Unlock(props: ServerSideProps) {
+  const { isTotpEnabled } = props
+  const router = useRouter()
+  const [password, setPassword] = useState('')
+  const [totpToken, setTotpToken] = useState('')
 
   const submissionHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (citadel)
-      citadel
-        .login(password, totpToken)
-        .then((res) => {
-          //Todo: throw success modal
-          console.log("Unlock success");
-          router.push("/");
-        })
-        .catch((err) => {
-          //Todo: throw error modal
-          console.error(err);
-        });
-  };
+    e.preventDefault()
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ password, totpToken }),
+    })
+      .then(() => router.push('/'))
+      .catch((err) => {
+        //Todo: show error modal
+        console.error(err)
+      })
+  }
 
   return (
-    <>
-      <ThemeToggle />
+    <Layout css={{}}>
       <Flex
         as="form"
         css={{
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          textAlign: "center",
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         onSubmit={submissionHandler}
       >
-        <Box
-          css={{
-            "@bp2": {
-              maxWidth: 500,
-            },
-          }}
-        >
+        <Box css={{ textAlign: 'center' }}>
           <Image src="/logo.svg" height={200} width={200} />
           <TextField
             centerLabel
             label="Password"
-            type="password"
             required={true}
+            showErrors={false}
+            type="password"
             value={password}
             onChange={setPassword}
-            showErrors={false}
           />
           {isTotpEnabled && (
             <TextField
+              autoComplete="off"
               centerLabel
               label="Two-Factor Authentication"
-              type="text"
-              required={true}
-              value={totpToken}
               onChange={setTotpToken}
-              autoComplete="off"
+              required={true}
               showErrors={false}
+              type="text"
+              value={totpToken}
             />
           )}
           <Button
+            css={{
+              mt: '$5',
+            }}
             filled="primary"
             type="submit"
-            css={{
-              mt: "$5",
-            }}
           >
             Unlock
           </Button>
         </Box>
       </Flex>
-      <Flex css={{ flexDirection: "column", alignItems: "flex-end" }}>
-        <Text as="h1">Citadel</Text>
-        <Text css={{ fontSize: "$5" }}>v0.0.1-alpha</Text>
-        <Button
-          css={{
-            background: "$success",
-            border: "none",
-            padding: "$2 $3",
-            mb: "$3",
-            color: "$dark",
-          }}
-        >
+      <Flex css={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+        <Text size="lg">Citadel</Text>
+        <Text>v0.0.1-alpha</Text>
+        <Button filled="success" size="sm">
           Update Available
         </Button>
       </Flex>
-    </>
-  );
-}
-
-export async function getServerSideProps() {
-  return { props: await citadelStatus() };
+    </Layout>
+  )
 }

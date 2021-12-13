@@ -1,44 +1,41 @@
 //UTILS
-import { createContext, useContext, useRef } from "react";
-import { useFocusRing } from "@react-aria/focus";
-import { useRadio, useRadioGroup } from "@react-aria/radio";
-
-//MODELS
-import { Props } from "../../models/Props";
+import { createContext, useContext, useRef } from 'react'
+import { useFocusRing } from '@react-aria/focus'
+import { useRadio, useRadioGroup } from '@react-aria/radio'
 
 //STATE
-import { useRadioGroupState } from "@react-stately/radio";
+import { useRadioGroupState } from '@react-stately/radio'
 
 //COMPONENTS
-import { Any } from "../layout/Any";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { Any } from '../layout/Any'
+import { VisuallyHidden } from '@react-aria/visually-hidden'
 
-let RadioContext = createContext<any>(null);
+let RadioContext = createContext<any>(null)
 
-function RadioGroup(props: Props) {
-  let { children, label } = props;
-  let state = useRadioGroupState(props);
-  let { radioGroupProps, labelProps } = useRadioGroup(props, state);
+function RadioGroup(props: React.ComponentProps<any>) {
+  let { children, label } = props
+  let state = useRadioGroupState(props)
+  let { radioGroupProps, labelProps } = useRadioGroup(props, state)
 
   return (
     <div {...radioGroupProps}>
       <span {...labelProps}>{label}</span>
       <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
     </div>
-  );
+  )
 }
 export function Radio(props: any) {
-  let { children } = props;
-  let state = useContext(RadioContext);
-  let ref = useRef(null);
-  let { inputProps } = useRadio(props, state, ref);
-  let { isFocusVisible, focusProps } = useFocusRing();
+  let { children } = props
+  let state = useContext(RadioContext)
+  let ref = useRef(null)
+  let { inputProps } = useRadio(props, state, ref)
+  let { isFocusVisible, focusProps } = useFocusRing()
 
-  let isSelected = state.selectedValue === props.value;
-  let strokeWidth = isSelected ? 6 : 2;
+  let isSelected = state.selectedValue === props.value
+  let strokeWidth = isSelected ? 6 : 2
 
   return (
-    <Any as="label" css={{ display: "flex", alignItems: "center" }}>
+    <Any as="label" css={{ display: 'flex', alignItems: 'center' }}>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
@@ -49,7 +46,7 @@ export function Radio(props: any) {
           cy={12}
           r={8 - strokeWidth / 2}
           fill="none"
-          css={{ stroke: isSelected ? "$primary" : "$light" }}
+          css={{ stroke: isSelected ? '$primary' : '$light' }}
           strokeWidth={strokeWidth}
         />
         {isFocusVisible && (
@@ -65,5 +62,5 @@ export function Radio(props: any) {
       </Any>
       {children}
     </Any>
-  );
+  )
 }

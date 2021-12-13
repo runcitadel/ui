@@ -7,27 +7,15 @@
     "@react-stately/toggle": "^3.2.3",
     "@runcitadel/sdk": "0.0.1-beta.15",
     "@stitches/react": "^1.2.6",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.12",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "@typescript-eslint/parser": "^5.6.0",
-    "framer-motion": "^5.4.3",
+    "iron-session": "^6.0.4",
     "next": "^12.0.7",
     "next-pwa": "^5.4.4",
     "next-themes": "^0.0.15",
-    "next-transpile-modules": "^9.0.0",
-    "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-aria": "^3.11.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "swr": "^1.1.0",
-    "typescript": "^4.5.2",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
@@ -37,30 +25,70 @@
     "build": "next build",
     "start": "next start",
     "test": "react-scripts test",
-    "format": "prettier --write '**/*.{js,json,css,md}' '!package.json|yarn*|node_modules|build|coverage'"
+    "format": "prettier --write '{,!(.next|public|.github)/**/}*.{ts,tsx,js,json,css,md}'"
   },
   "eslintConfig": {
-    "ignorePatterns": [
-      "build/*",
-      "**/public/*.js"
-    ],
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended"
-    ],
-    "rules": {
-      "@typescript-eslint/explicit-module-boundary-types": "off"
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
     },
     "env": {
       "browser": true,
+      "es2021": true,
       "node": true
-    }
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "jsx-a11y"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "jsx-a11y/anchor-is-valid": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts",
+          "**/*.tsx"
+        ],
+        "parser": "@typescript-eslint/parser",
+        "plugins": [
+          "@typescript-eslint"
+        ],
+        "extends": [
+          "plugin:@typescript-eslint/recommended"
+        ],
+        "rules": {
+          "react/prop-types": "off",
+          "@typescript-eslint/ban-ts-comment": "warn"
+        }
+      }
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 85,
+    "tabWidth": 2,
+    "useTabs": false
   },
   "browserslist": {
     "production": [
@@ -74,5 +102,24 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.1.1",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.3"
+  }
 }
