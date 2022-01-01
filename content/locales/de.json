@@ -8,7 +8,7 @@
     "description": "Invalid password or 2fa token error message"
   },
   "unlock.loginFormSubmitButtonText": {
-    "defaultMessage": "aufschließen",
+    "defaultMessage": "Entsperren",
     "description": "Login/unlock form button text"
   },
   "unlock.passwordInputLabel": {
