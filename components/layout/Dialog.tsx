@@ -4,6 +4,7 @@ import { useButton } from '@react-aria/button'
 import { useRef } from 'react'
 import { Modal } from './Modal'
 import { BaseButton } from '../form/Button'
+import { Flex } from './Flex'
 
 type DialogProps = {
   title: string
@@ -51,17 +52,18 @@ export function Dialog(props: DialogProps) {
       {state.isOpen && (
         <OverlayContainer>
           <Modal title={title} isOpen onClose={state.close} isDismissable>
-            <form style={{ display: 'flex', flexDirection: 'column' }}>
+            <Flex as="form" css={{ fd: 'column' }}>
               {props.children}
+              {/* Todo: Should this be the /components/form/Button component instead of a native button? */}
               <button
                 {...closeButtonProps}
                 ref={closeButtonRef}
-                style={{ marginTop: 10 }}
+                style={{ mt: 10 }}
                 onClick={handleSubmission}
               >
                 {submitText}
               </button>
-            </form>
+            </Flex>
           </Modal>
         </OverlayContainer>
       )}

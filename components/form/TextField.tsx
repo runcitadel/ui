@@ -9,14 +9,14 @@ import { Flex } from '../layout/Flex'
 import { VisuallyHidden } from '@react-aria/visually-hidden'
 
 export const BaseTextField = styled('input', {
-  textAlign: 'center',
+  ta: 'center',
   br: '$2',
   boxShadow: '$2',
   fontSize: '$4',
   p: '$4 $5',
   '@bp2': {
     fontSize: '$5',
-    padding: '$5 $6',
+    p: '$5 $6',
   },
   '&:focus-visible': {
     outlineColor: '$focusRing',
@@ -24,7 +24,7 @@ export const BaseTextField = styled('input', {
     outlineStyle: 'solid',
   },
   '&:disabled': {
-    backgroundColor: '$dark',
+    bc: '$dark',
     color: '$light',
   },
   variants: {
@@ -42,7 +42,7 @@ export const BaseTextField = styled('input', {
 })
 
 export const BaseTextFieldLabel = styled('label', {
-  textAlign: 'left',
+  ta: 'left',
   fontSize: '$6',
   mb: '$1',
   '@bp2': {
@@ -52,7 +52,7 @@ export const BaseTextFieldLabel = styled('label', {
 })
 
 export function TextField(props: React.ComponentProps<any>) {
-  let {
+  const {
     disabled = false,
     required = false,
     invalid = false,
@@ -85,20 +85,18 @@ export function TextField(props: React.ComponentProps<any>) {
     }
   }
 
-  let ref = useRef(null)
-  let { labelProps, inputProps, descriptionProps, errorMessageProps } = useTextField(
-    propsCopy,
-    ref
-  )
+  const ref = useRef(null)
+  const { labelProps, inputProps, descriptionProps, errorMessageProps } =
+    useTextField(propsCopy, ref)
 
   return (
-    <Flex css={{ flexDirection: 'column', width: '100%' }}>
+    <Flex css={{ fd: 'column', width: '100%' }}>
       <Flex css={{ jc: centerLabel ? 'center' : 'space-between', ai: 'center' }}>
         <BaseTextFieldLabel {...labelProps}>{label}</BaseTextFieldLabel>
         {showErrors && propsCopy.errorMessage ? (
           <Box
             {...errorMessageProps}
-            css={{ color: '$error', fontSize: '$4', textAlign: 'right' }}
+            css={{ color: '$error', fontSize: '$4', texttalign: 'right' }}
           >
             {propsCopy.errorMessage}
           </Box>
@@ -106,7 +104,7 @@ export function TextField(props: React.ComponentProps<any>) {
           <VisuallyHidden>
             <Box
               {...errorMessageProps}
-              css={{ color: '$error', fontSize: '$4', textAlign: 'right' }}
+              css={{ color: '$error', fontSize: '$4', ta: 'right' }}
             >
               {propsCopy.errorMessage}
             </Box>

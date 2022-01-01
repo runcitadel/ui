@@ -10,20 +10,20 @@ import { Text } from '../typography/Text'
 import { Flex } from './Flex'
 
 export function Modal(props: React.ComponentProps<any>) {
-  let { title, children } = props
+  const { title, children } = props
 
   // Handle interacting outside the dialog and pressing
   // the Escape key to close the modal.
-  let ref = useRef(null)
-  let { overlayProps, underlayProps } = useOverlay(props, ref)
+  const ref = useRef(null)
+  const { overlayProps, underlayProps } = useOverlay(props, ref)
 
   // Prevent scrolling while the modal is open, and hide content
   // outside the modal from screen readers.
   usePreventScroll()
-  let { modalProps } = useModal()
+  const { modalProps } = useModal()
 
   // Get props for the dialog and its title
-  let { dialogProps, titleProps } = useDialog(props, ref)
+  const { dialogProps, titleProps } = useDialog(props, ref)
 
   return (
     <Flex
@@ -35,12 +35,12 @@ export function Modal(props: React.ComponentProps<any>) {
         bottom: 0,
         right: 0,
         transparentBackground: 0.75,
-        alignItems: 'center',
-        justifyContent: 'center',
+        ai: 'center',
+        jc: 'center',
       }}
       {...underlayProps}
     >
-      <FocusScope contain restoreFocus autoFocus>
+      <FocusScope contain restoreFocus>
         <Box
           {...overlayProps}
           {...dialogProps}
@@ -52,7 +52,7 @@ export function Modal(props: React.ComponentProps<any>) {
             p: '$3',
           }}
         >
-          <Text as="h3" {...titleProps} css={{ marginTop: 0 }}>
+          <Text as="h3" {...titleProps} css={{ mt: 0 }}>
             {title}
           </Text>
           {children}

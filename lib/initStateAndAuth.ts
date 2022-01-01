@@ -25,6 +25,7 @@ export const initStateAndAuth = async (
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
   const { req } = context
 
+  //Create a Citadel instance, and set the jwt if it exists on req.session
   const citadelInstance = getCitadel()
   if (req.session.jwt) citadelInstance.jwt = req.session.jwt
 
@@ -74,7 +75,7 @@ export const initStateAndAuth = async (
               })
             } else {
               //By now all auth guard checks have passed!
-              //Now we use /lib/dataSources getters to get any data this route needs when rendered
+              //Now we use data source getters, and the data sources defined in initStateAndAuth's config to get any data this route needs when rendered
               Promise.all(
                 dataSources.map<any>((dataSource: DataSource) =>
                   dataSourceGetters[dataSource](citadelInstance)

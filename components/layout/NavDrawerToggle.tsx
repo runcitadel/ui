@@ -3,8 +3,8 @@ import { styled } from '../../styles/stitches.config'
 import { ToggleButton } from '../form/ToggleButton'
 
 const NavDrawerBase = styled(ToggleButton, {
-  borderRadius: '$round',
-  backgroundColor: '$clear',
+  br: '$round',
+  bc: '$clear',
   position: 'fixed',
   bottom: 100,
   right: 100,

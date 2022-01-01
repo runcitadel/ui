@@ -1,0 +1,38 @@
+{
+  "api.login.invalidPass": [
+    {
+      "type": 0,
+      "value": "Invalid password"
+    }
+  ],
+  "api.login.invalidPassOr2fa": [
+    {
+      "type": 0,
+      "value": "Invalid password or 2fa token"
+    }
+  ],
+  "unlock.loginFormSubmitButtonText": [
+    {
+      "type": 0,
+      "value": "Unlock"
+    }
+  ],
+  "unlock.passwordInputLabel": [
+    {
+      "type": 0,
+      "value": "Password"
+    }
+  ],
+  "unlock.twoFactorAuthLabel": [
+    {
+      "type": 0,
+      "value": "Two-factor Authentication Token"
+    }
+  ],
+  "unlock.updateAvailableNotification": [
+    {
+      "type": 0,
+      "value": "Update Available"
+    }
+  ]
+}

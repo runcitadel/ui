@@ -35,7 +35,7 @@ export default function App(props: ServerSideProps) {
   const [textField3Value, setTextField3Value] = useState('')
   const [textField4Value, setTextField4Value] = useState('')
   return (
-    <Layout>
+    <Layout {...props}>
       <Text as="h1">Citadel Design System</Text>
 
       <Link href="/">Link..</Link>

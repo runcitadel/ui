@@ -1,11 +1,12 @@
 //UTILS
-import { ReactElement } from 'react'
+import { ReactElement, useContext } from 'react'
 import { useLocale } from '@react-aria/i18n'
 
 //COMPONENTS
 import { Flex } from './Flex'
 import { ThemeToggle } from './ThemeToggle'
 import { CSS } from '@stitches/react'
+import { LangAndDir } from '../../contexts/LangAndDir'
 
 export function Layout({
   children,
@@ -14,23 +15,26 @@ export function Layout({
   children: JSX.Element | JSX.Element[]
   css?: CSS
 }) {
-  const { locale, direction } = useLocale()
+  const {
+    actualLoc: { lang, dir },
+  } = useContext(LangAndDir)
 
   return (
     <Flex
       css={{
-        flexDirection: 'column',
+        //Todo: some pages may require different flex box styles on the main container.
+        //Thus, some of these settings should probably be made dynamic like fd, ai, and jc?? Hardcoded them for now.
+        fd: 'column',
         ai: 'flex-start',
         jc: 'space-between',
         padding: '$6',
         minHeight: '100vh',
         ...css,
       }}
-      lang={locale}
-      dir={direction}
+      lang={lang}
+      dir={dir}
     >
       <ThemeToggle />
-      {/* Todo: Wrap children in layout components.. already added theme toggle, but add navigation, etc */}
       {children}
     </Flex>
   )

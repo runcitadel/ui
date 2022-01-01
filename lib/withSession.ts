@@ -1,5 +1,7 @@
-import Citadel from '@runcitadel/sdk/browser/citadel'
+//UTILS
 import { withIronSessionApiRoute, withIronSessionSsr } from 'iron-session/next'
+
+//MODELS
 import {
   GetServerSidePropsContext,
   GetServerSidePropsResult,

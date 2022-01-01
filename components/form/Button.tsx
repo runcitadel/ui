@@ -66,18 +66,18 @@ export const BaseButton = styled('button', {
     size: {
       sm: {
         fontSize: '$3',
-        padding: '$2 $3',
+        p: '$2 $3',
         '@bp2': {
           fontSize: '$4',
-          padding: '$3 $4',
+          p: '$3 $4',
         },
       },
       md: {
         fontSize: '$4',
-        padding: '$4 $5',
+        p: '$4 $5',
         '@bp2': {
           fontSize: '$5',
-          padding: '$5 $6',
+          p: '$5 $6',
         },
       },
     },
@@ -98,8 +98,8 @@ export const BaseButton = styled('button', {
 })
 
 export function Button(props: React.ComponentProps<any>) {
-  let ref = useRef(null)
-  let { buttonProps } = useButton(props, ref)
+  const ref = useRef(null)
+  const { buttonProps } = useButton(props, ref)
 
   return (
     <BaseButton {...props} {...buttonProps} disabled={props.disabled} ref={ref}>

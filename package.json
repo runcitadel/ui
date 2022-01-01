@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@bitcoin-design/bitcoin-icons-react": "^0.1.8",
+    "@formatjs/intl": "^1.18.0",
     "@react-stately/toggle": "^3.2.3",
     "@runcitadel/sdk": "0.0.1-beta.15",
     "@stitches/react": "^1.2.6",
@@ -15,6 +16,7 @@
     "react-aria": "^3.11.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-intl": "^5.24.0",
     "swr": "^1.1.0",
     "web-vitals": "^2.1.2"
   },
@@ -22,10 +24,27 @@
     "precommit": "yarn format",
     "dev": "next dev",
     "lint": "next lint",
-    "build": "next build",
+    "build": "yarn i18n && next build",
     "start": "next start",
     "test": "react-scripts test",
-    "format": "prettier --write '{,!(.next|public|.github)/**/}*.{ts,tsx,js,json,css,md}'"
+    "format": "prettier --write '{,!(.next|public|.github)/**/}*.{ts,tsx,js,json,css,md}'",
+    "extract:i18n": "formatjs extract '{pages,components,lib}/**/*.{js,ts,tsx}' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file content/locales/en.json",
+    "compile:i18n": "formatjs compile-folder --ast content/locales content/compiled-locales",
+    "i18n": "npm run extract:i18n && npm run compile:i18n"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      [
+        "formatjs",
+        {
+          "idInterpolationPattern": "[sha512:contenthash:base64:6]",
+          "ast": true
+        }
+      ]
+    ]
   },
   "eslintConfig": {
     "root": true,
@@ -104,6 +123,7 @@
   },
   "packageManager": "yarn@3.1.1",
   "devDependencies": {
+    "@formatjs/cli": "^4.5.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

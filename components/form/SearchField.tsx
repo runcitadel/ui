@@ -8,16 +8,16 @@ import { Box } from '../layout/Box'
 import { BaseTextField, BaseTextFieldLabel } from './TextField'
 
 export function SearchField(props: React.ComponentProps<any>) {
-  let { label } = props
-  let state = useSearchFieldState(props)
-  let ref = useRef(null)
-  let { labelProps, inputProps } = useSearchField(props, state, ref)
+  const { label } = props
+  const state = useSearchFieldState(props)
+  const ref = useRef(null)
+  const { labelProps, inputProps } = useSearchField(props, state, ref)
 
   return (
     <Box
       css={{
         display: 'flex',
-        flexDirection: 'column',
+        fd: 'column',
         width: '100%',
         ...props.css,
       }}

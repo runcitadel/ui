@@ -295,7 +295,7 @@ export const {
     }),
 
     transparentBackground: (value: number) => ({
-      backgroundColor: `rgba(0, 0, 0, ${value >= 0 || value <= 1 ? value : '0%'})`,
+      bc: `rgba(0, 0, 0, ${value >= 0 || value <= 1 ? value : '0%'})`,
     }),
   },
 })

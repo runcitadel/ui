@@ -1,10 +1,12 @@
 //UTILS
 import { getCitadel } from '../../lib/getCitadel'
+import { getIntl } from '../../lib/getIntl'
+import { getLocale } from '../../lib/getLocale'
+import { isTotpEnabled } from '../../lib/getDataSources'
 import { withSessionRoute } from '../../lib/withSession'
 
 //MODELS
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { isTotpEnabled } from '../../lib/getDataSources'
 
 export default withSessionRoute(Login)
 
@@ -20,16 +22,32 @@ async function Login(req: NextApiRequest, res: NextApiResponse) {
     })
     .then(() => res.status(200).json({}))
     .catch(() => {
+      //Todo: should this be an empty string instead of "citadelInstance.jwt" ??
+      //Is this even necessary.. if the login fails the jwt is irrelevant??
       //Update jwt in session
       req.session.jwt = citadelInstance.jwt
       req.session
         .save()
         .then(() => isTotpEnabled(citadelInstance))
-        .then((isTotpEnabled) =>
-          res.status(401).json({
-            message: `Invalid password${isTotpEnabled ? ' or 2fa token' : ''}`,
+        .then((isTotpEnabled) => {
+          const intl = getIntl(getLocale(req))
+          return res.status(401).json({
+            message: isTotpEnabled
+              ? intl.formatMessage({
+                  id: 'api.login.invalidPass',
+                  description: 'Invalid password error message',
+                  defaultMessage: 'Invalid password',
+                })
+              : intl.formatMessage({
+                  id: 'api.login.invalidPassOr2fa',
+                  description: 'Invalid password or 2fa token error message',
+                  defaultMessage: 'Invalid password or 2fa token',
+                }),
           })
-        )
-        .catch(() => res.status(500).json({ message: 'Internal Server Error' }))
+        })
+        .catch((err) => {
+          console.error(err, 'utoh')
+          res.status(500).json({ message: 'Internal Server Error' })
+        })
     })
 }

@@ -12,10 +12,10 @@ import { Any } from '../layout/Any'
 import { ToggleLabel } from './CheckBox'
 
 export function Switch(props: React.ComponentProps<any>) {
-  let { state, size = 2 } = props
-  let ref = useRef(null)
-  let { inputProps } = useSwitch(props, state, ref)
-  let { isFocusVisible, focusProps } = useFocusRing()
+  const { state, size = 2 } = props
+  const ref = useRef(null)
+  const { inputProps } = useSwitch(props, state, ref)
+  const { isFocusVisible, focusProps } = useFocusRing()
 
   return (
     <ToggleLabel>
@@ -28,7 +28,7 @@ export function Switch(props: React.ComponentProps<any>) {
         height={24 * size}
         aria-hidden="true"
         css={{
-          marginRight: 4,
+          mr: 4,
         }}
       >
         <Any

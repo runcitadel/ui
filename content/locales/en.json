@@ -1,0 +1,26 @@
+{
+  "api.login.invalidPass": {
+    "defaultMessage": "Invalid password",
+    "description": "Invalid password error message"
+  },
+  "api.login.invalidPassOr2fa": {
+    "defaultMessage": "Invalid password or 2fa token",
+    "description": "Invalid password or 2fa token error message"
+  },
+  "unlock.loginFormSubmitButtonText": {
+    "defaultMessage": "Unlock",
+    "description": "Login/unlock form button text"
+  },
+  "unlock.passwordInputLabel": {
+    "defaultMessage": "Password",
+    "description": "Login password input field label"
+  },
+  "unlock.twoFactorAuthLabel": {
+    "defaultMessage": "Two-factor Authentication Token",
+    "description": "Two-factor authentication token input label"
+  },
+  "unlock.updateAvailableNotification": {
+    "defaultMessage": "Update Available",
+    "description": "Update available button text"
+  }
+}

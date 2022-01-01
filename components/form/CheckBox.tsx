@@ -10,7 +10,7 @@ import { VisuallyHidden } from '@react-aria/visually-hidden'
 
 export const ToggleLabel = styled('label', {
   display: 'flex',
-  alignItems: 'center',
+  ai: 'center',
   cursor: 'pointer',
   '&:active': {
     transform: 'translateY(3px)',
@@ -18,10 +18,10 @@ export const ToggleLabel = styled('label', {
 })
 
 export function Checkbox(props: React.ComponentProps<any>) {
-  let { state, size = 2 } = props
-  let ref = useRef(null)
-  let { inputProps } = useCheckbox(props, state, ref)
-  let { isFocusVisible, focusProps } = useFocusRing()
+  const { state, size = 2 } = props
+  const ref = useRef(null)
+  const { inputProps } = useCheckbox(props, state, ref)
+  const { isFocusVisible, focusProps } = useFocusRing()
 
   return (
     <ToggleLabel>
@@ -34,7 +34,7 @@ export function Checkbox(props: React.ComponentProps<any>) {
         height={24 * size}
         aria-hidden="true"
         css={{
-          marginRight: '$2',
+          mr: '$2',
         }}
       >
         <Any
