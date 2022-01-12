@@ -1,12 +1,14 @@
 //UTILS
-import { ReactElement, useContext } from 'react'
-import { useLocale } from '@react-aria/i18n'
+import { useContext } from 'react'
 
 //COMPONENTS
-import { Flex } from './Flex'
-import { ThemeToggle } from './ThemeToggle'
 import { CSS } from '@stitches/react'
+import { Flex } from './Flex'
+import Image from 'next/image'
 import { LangAndDir } from '../../contexts/LangAndDir'
+import { ThemeToggle } from './ThemeToggle'
+import { ToggleButton } from '../form/ToggleButton'
+import { Box } from './Box'
 
 export function Layout({
   children,
@@ -15,6 +17,7 @@ export function Layout({
   children: JSX.Element | JSX.Element[]
   css?: CSS
 }) {
+  //Set the lang and dir properties
   const {
     actualLoc: { lang, dir },
   } = useContext(LangAndDir)
@@ -36,6 +39,16 @@ export function Layout({
     >
       <ThemeToggle />
       {children}
+      {/* Todo: I was trying to get this "stickied" in the bottom right corner.. it's a button to open the nave menu. Have not been able to get it to work yet. */}
+      <Box css={{ position: 'relative' }}>
+        <ToggleButton css={{ position: 'absolute', right: '$6', bottom: '$6' }}>
+          <Image src="/logo.svg" height={50} width={50} />
+        </ToggleButton>
+      </Box>
+
+      <span className="text-6xl font-bold">
+        Tailwind works if this is big and bold!{' '}
+      </span>
     </Flex>
   )
 }

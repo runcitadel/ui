@@ -12,6 +12,7 @@ import { LangAndDir } from '../contexts/LangAndDir'
 //STYLES
 import { darkTheme } from '../styles/stitches.config'
 import '../styles/reset.css'
+import '../styles/globals.css'
 
 //COMPONENTS
 import Head from 'next/head'
@@ -24,7 +25,7 @@ import { ActualLoc } from '../models/ActualLoc'
 import English from '../content/compiled-locales/en.json'
 import German from '../content/compiled-locales/de.json'
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   //Use react-aria to get the user's browser defaults, but use Context and useState to allow the language to be changed
   const { locale: localeTemp, direction: directionTemp } = useLocale()
 
