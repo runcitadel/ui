@@ -3031,13 +3031,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@runcitadel/sdk@npm:0.0.1-beta.15":
-  version: 0.0.1-beta.15
-  resolution: "@runcitadel/sdk@npm:0.0.1-beta.15"
+"@runcitadel/sdk@npm:0.1.8":
+  version: 0.1.8
+  resolution: "@runcitadel/sdk@npm:0.1.8"
   peerDependencies:
-    "@types/react": ^17.0.37
+    "@types/react": ^17.0.38
     react: ^17.0.2
-  checksum: 0023c7aed9d1b0c72b1bc1ac2422fd0369d9b3227e68be95ec5c9a9e2ffe0c6cc3746a15365f740710e1a62cbeea0d1463be49bc16557636659b660e3906a6a0
+  checksum: cc892ba53226a296abe1228c3d58f85cc9ddf25880625daaf8d42768c835d3832cc42a8493d7e2ef1ff098b5ec694fe64fd47e15c0be23ebbd26df593dc1bb38
   languageName: node
   linkType: hard
 
@@ -8886,7 +8886,7 @@ __metadata:
     "@formatjs/cli": ^4.5.0
     "@formatjs/intl": ^1.18.0
     "@react-stately/toggle": ^3.2.3
-    "@runcitadel/sdk": 0.0.1-beta.15
+    "@runcitadel/sdk": 0.1.8
     "@stitches/react": ^1.2.6
     "@testing-library/jest-dom": ^5.16.1
     "@testing-library/react": ^12.1.2
