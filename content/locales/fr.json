@@ -1,1 +1,26 @@
-{}
+{
+    "api.login.invalidPass": {
+        "defaultMessage": "Mot de passe invalide",
+        "description": "Message d'erreur de mot de passe invalide"
+    },
+    "api.login.invalidPassOr2fa": {
+        "defaultMessage": "Mot de passe ou authentification à 2 facteurs invalide",
+        "description": "Message d'erreur de mot de passe ou authentification à 2 facteurs invalide"
+    },
+    "unlock.loginFormSubmitButtonText": {
+        "defaultMessage": "Déverrouiller",
+        "description": "Texte du bouton de connexion/déverrouillage"
+    },
+    "unlock.passwordInputLabel": {
+        "defaultMessage": "Mot de passe",
+        "description": "Nom du champ de mot de passe"
+    },
+    "unlock.twoFactorAuthLabel": {
+        "defaultMessage": "Jeton d'authentification à deux facteurs",
+        "description": "Nom du champ de jeton d'authentification à deux facteurs"
+    },
+    "unlock.updateAvailableNotification": {
+        "defaultMessage": "Mise à jour disponible",
+        "description": "Texte du bouton de mise à jour disponible"
+    }
+}
