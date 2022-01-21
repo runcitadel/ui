@@ -1,5 +1,5 @@
 //UTILS
-import { getCitadel } from '../../lib/getCitadel'
+import { getManager } from '../../lib/getCitadel'
 import { getIntl } from '../../lib/getIntl'
 import { getLocale } from '../../lib/getLocale'
 import { isTotpEnabled } from '../../lib/getDataSources'
@@ -11,13 +11,14 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 export default withSessionRoute(Login)
 
 async function Login(req: NextApiRequest, res: NextApiResponse) {
-  const citadelInstance = getCitadel()
+  const citadelManager = getManager()
 
-  return citadelInstance
+  return citadelManager.auth
     .login(req.body.password, req.body.totpToken)
     .then(() => {
+      console.log(citadelManager.jwt, 'citadelManager.jwt')
       //Update jwt in session
-      req.session.jwt = citadelInstance.jwt
+      req.session.jwt = citadelManager.jwt
       return req.session.save()
     })
     .then(() => res.status(200).json({}))
@@ -25,10 +26,10 @@ async function Login(req: NextApiRequest, res: NextApiResponse) {
       //Todo: should this be an empty string instead of "citadelInstance.jwt" ??
       //Is this even necessary.. if the login fails the jwt is irrelevant??
       //Update jwt in session
-      req.session.jwt = citadelInstance.jwt
+      req.session.jwt = citadelManager.jwt
       req.session
         .save()
-        .then(() => isTotpEnabled(citadelInstance))
+        .then(() => isTotpEnabled(citadelManager))
         .then((isTotpEnabled) => {
           const intl = getIntl(getLocale(req))
           return res.status(401).json({

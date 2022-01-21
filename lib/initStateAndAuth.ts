@@ -1,5 +1,5 @@
 //UTILS
-import { getCitadel } from './getCitadel'
+import { getManager, getMiddleware } from './getCitadel'
 import * as dataSourceGetters from './getDataSources'
 
 //MODELS
@@ -25,12 +25,16 @@ export const initStateAndAuth = async (
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
   const { req } = context
 
-  //Create a Citadel instance, and set the jwt if it exists on req.session
-  const citadelInstance = getCitadel()
-  if (req.session.jwt) citadelInstance.jwt = req.session.jwt
+  //Create a Citadel Manager and Middleware instance, and set the jwt if it exists on req.session
+  const citadelManager = getManager()
+  const citadelMiddleware = getMiddleware()
+  if (req.session.jwt) {
+    citadelManager.jwt = req.session.jwt
+    citadelMiddleware.jwt = req.session.jwt
+  }
 
   return new Promise((resolve) => {
-    citadelInstance.manager.auth
+    citadelManager.auth
       .isRegistered()
       .then((isRegistered: boolean) => {
         //Ensure the user is not on an invalid route (in terms of the Citadel's current state)
@@ -52,7 +56,8 @@ export const initStateAndAuth = async (
         } else {
           //We proceed here to make a couple more auth guard validations
           //Involving invalid jwt acceccing a protected route, and a valid jwt accessing the unlock route
-          citadelInstance.manager.auth.test().then(async (isValidJwt: boolean) => {
+          citadelManager.auth.test().then(async (isValidJwt: boolean) => {
+            console.log(isValidJwt, 'isValidJwt')
             if (!isValidJwt) {
               //Update session if jwt is no longer valid
               req.session.jwt = ''
@@ -78,7 +83,7 @@ export const initStateAndAuth = async (
               //Now we use data source getters, and the data sources defined in initStateAndAuth's config to get any data this route needs when rendered
               Promise.all(
                 dataSources.map<any>((dataSource: DataSource) =>
-                  dataSourceGetters[dataSource](citadelInstance)
+                  dataSourceGetters[dataSource](citadelManager, citadelMiddleware)
                 )
               )
                 .then((state) => {
