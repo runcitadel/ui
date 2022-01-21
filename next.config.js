@@ -23,4 +23,8 @@ module.exports = withPWA({
     runtimeCaching,
   },
   reactStrictMode: true,
+  publicRuntimeConfig: {
+    MIDDLEWARE_CONNECTION_URL: process.env.MIDDLEWARE_CONNECTION_URL,
+    MANAGER_CONNECTION_URL: process.env.MANAGER_CONNECTION_URL,
+  },
 })
