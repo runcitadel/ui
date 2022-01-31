@@ -25,8 +25,4 @@ EXPOSE 3000
 
 ENV OVERWRITE_NETWORK testnet 
 
-VOLUME [ "//var/run/docker.sock:/var/run/docker.sock" ]
-
-
-
 CMD ["./core/scripts/start"]
