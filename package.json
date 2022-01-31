@@ -23,7 +23,7 @@
   "scripts": {
     "precommit": "yarn format",
     "dev-core-build": "docker build --pull --rm -f \"Dockerfile.core\" -t core:latest \".\" <",
-    "dev-core-start": "docker container run --rm --name runcitadelcore core",
+    "dev-core-start": "docker container run --rm --privileged --name runcitadelcore core",
     "dev": "next dev",
     "lint": "next lint",
     "build": "next build",
