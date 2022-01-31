@@ -6,7 +6,7 @@
     "@bitcoin-design/bitcoin-icons-react": "^0.1.8",
     "@formatjs/intl": "^1.18.0",
     "@react-stately/toggle": "^3.2.3",
-    "@runcitadel/sdk": "0.1.8",
+    "@runcitadel/sdk": "^0.2.1",
     "@stitches/react": "^1.2.6",
     "iron-session": "^6.0.4",
     "next": "^12.0.7",
@@ -22,15 +22,25 @@
   },
   "scripts": {
     "precommit": "yarn format",
+    "dev-core-build": "docker build --pull --rm -f \"Dockerfile.core\" -t core:latest \".\" <",
+    "dev-core-start": "docker container run --rm --name runcitadelcore core",
     "dev": "next dev",
     "lint": "next lint",
-    "build": "yarn i18n && next build",
+    "build": "next build",
     "start": "next start",
     "test": "react-scripts test",
     "format": "prettier --write '{,!(.next|public|.github)/**/}*.{ts,tsx,js,json,css,md}'",
     "extract:i18n": "formatjs extract '{pages,components,lib}/**/*.{js,ts,tsx}' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file content/locales/en.json",
     "compile:i18n": "formatjs compile-folder --ast content/locales content/compiled-locales",
-    "i18n": "npm run extract:i18n && npm run compile:i18n"
+    "i18n": "npm run extract:i18n && npm run compile:i18n",
+    "sdiff": "git diff && git submodule foreach 'git diff'",
+    "sformat": "prettier --write '**/*.{js,json,css,md}' '!package.json|yarn*|node_modules|build|coverage'",
+    "spull": "git pull --recurse-submodules",
+    "spush": "git push --recurse-submodules=on-demand",
+    "supdate": "git submodule update --init --recursive --remote",
+    "link": "cd $PWD/sdk && yalc publish && cd .. && yalc add @runcitadel/sdk",
+    "unlink": "yalc remove @runcitadel/sdk",
+    "disable-telemetry": "npx next telemetry disable"
   },
   "babel": {
     "presets": [
@@ -64,7 +74,8 @@
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
       "plugin:jsx-a11y/recommended",
-      "plugin:prettier/recommended"
+      "plugin:prettier/recommended",
+      "plugin:@next/next/recommended"
     ],
     "parserOptions": {
       "ecmaFeatures": {
@@ -79,7 +90,8 @@
     ],
     "rules": {
       "react/react-in-jsx-scope": "off",
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      " @typescript-eslint/no-explicit-any": "off"
     },
     "overrides": [
       {
@@ -123,7 +135,9 @@
   },
   "packageManager": "yarn@3.1.1",
   "devDependencies": {
+    "@axe-core/react": "^4.3.2",
     "@formatjs/cli": "^4.5.0",
+    "@next/eslint-plugin-next": "^12.0.8",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -143,6 +157,7 @@
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.13",
-    "typescript": "^4.5.3"
+    "typescript": "^4.5.3",
+    "yalc": "^1.0.0-pre.53"
   }
 }

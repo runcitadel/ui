@@ -1,4 +1,4 @@
-export type ActualLoc = {
+export type Loc = {
   lang: string
   dir: DirectionSetting
 }

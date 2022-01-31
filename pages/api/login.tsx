@@ -15,18 +15,15 @@ async function Login(req: NextApiRequest, res: NextApiResponse) {
 
   return citadelManager.auth
     .login(req.body.password, req.body.totpToken)
-    .then(() => {
-      console.log(citadelManager.jwt, 'citadelManager.jwt')
+    .then((jwt: string) => {
       //Update jwt in session
-      req.session.jwt = citadelManager.jwt
+      req.session.jwt = jwt
       return req.session.save()
     })
     .then(() => res.status(200).json({}))
-    .catch(() => {
-      //Todo: should this be an empty string instead of "citadelInstance.jwt" ??
-      //Is this even necessary.. if the login fails the jwt is irrelevant??
-      //Update jwt in session
-      req.session.jwt = citadelManager.jwt
+    .catch((err) => {
+      console.log(err, 'err')
+      req.session.jwt = ''
       req.session
         .save()
         .then(() => isTotpEnabled(citadelManager))

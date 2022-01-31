@@ -1,3 +1,6 @@
 [submodule "core"]
 	path = core
 	url = git@github.com:runcitadel/core.git
+[submodule "sdk"]
+	path = sdk
+	url = git@github.com:runcitadel/sdk.git

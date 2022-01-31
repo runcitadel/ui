@@ -19,7 +19,7 @@ export function Layout({
 }) {
   //Set the lang and dir properties
   const {
-    actualLoc: { lang, dir },
+    loc: { lang, dir },
   } = useContext(LangAndDir)
 
   return (
