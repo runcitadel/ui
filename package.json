@@ -22,8 +22,8 @@
   },
   "scripts": {
     "precommit": "yarn format",
-    "dev-core-build": "docker build --pull --rm -f \"Dockerfile.core\" -t core:latest .",
-    "dev-core-start": "docker container run --rm --privileged --volume /var/run/docker.sock:/var/run/docker.sock --name citadel-core core",
+    "dev-core-build": "docker build --pull --rm -f \"./dev/Dockerfile.core\" -t core:latest .",
+    "dev-core-start": "docker container run --rm --privileged -ti --volume /var/run/docker.sock:/var/run/docker.sock --name runcitadelcore core",
     "dev": "next dev",
     "lint": "next lint",
     "build": "next build",

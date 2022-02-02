@@ -1,0 +1,5 @@
+#!/bin/bash
+
+screen -dmS dockerd dockerd
+sleep 5
+./../core/scripts/start
