@@ -1,6 +1,8 @@
 //UTILS
 import { useLocale } from '@react-aria/i18n'
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
+import ReactDOM from 'react-dom'
+import { isRTL } from '../lib/isRTL'
 
 //PROVIDERS
 import { SSRProvider } from '@react-aria/ssr'
@@ -19,31 +21,44 @@ import Head from 'next/head'
 
 //MODELS
 import { AppProps } from 'next/app'
-import { ActualLoc } from '../models/ActualLoc'
+import { Loc } from '../models/Loc'
 
 //LANGUAGES
 import English from '../content/compiled-locales/en.json'
 import German from '../content/compiled-locales/de.json'
 
+//@axe-core/react tests the accessibility of the rendered DOM, and logs any issues to the developer console
+//It should be disabled in production to optimize performance
+if (process.env.NODE_ENV !== 'production') {
+  const axe = require('@axe-core/react')
+  axe(React, ReactDOM, 1000)
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   //Use react-aria to get the user's browser defaults, but use Context and useState to allow the language to be changed
   const { locale: localeTemp, direction: directionTemp } = useLocale()
+  const [messages, setMessages] = useState(English)
 
-  //Use React.useState to store the chosen language. This can be leveraged to allow the user to choos the language used
-  const [actualLoc, setActualLoc] = useState<ActualLoc>({
+  //Use React.useState to store the chosen language
+  //This can be leveraged to allow the user to choose the language they prefer and override the Browser's default language
+  const [loc, setLoc] = useState<Loc>({
     lang: localeTemp.split('-')[0],
     dir: directionTemp as DirectionSetting,
   })
 
-  //Determine which messages need to be used
-  const messages = useMemo(() => {
-    switch (actualLoc.lang) {
-      case 'en':
-        return English
+  useMemo(() => {
+    //Determine which language messages need to be used
+    switch (loc.lang) {
       case 'de':
-        return German
+        setMessages(German)
+        break
+      default:
+        setMessages(English)
     }
-  }, [actualLoc])
+
+    //Determine if the language is RTL
+    setLoc({ ...loc, lang: isRTL(loc.lang) ? 'rtl' : 'ltr' })
+  }, [loc.lang])
 
   return (
     <>
@@ -75,9 +90,10 @@ export default function App({ Component, pageProps }: AppProps) {
             light: 'light',
           }}
         >
-          <I18nProvider locale={actualLoc.lang}>
-            <LangAndDir.Provider value={{ actualLoc, setActualLoc }}>
-              <IntlProvider locale={actualLoc.lang} messages={messages}>
+          {/* react-aria does not export the context it uses for I18nProvider which is the reason for the LangAndDir context*/}
+          <I18nProvider locale={loc.lang}>
+            <LangAndDir.Provider value={{ loc, setLoc }}>
+              <IntlProvider locale={loc.lang} messages={messages}>
                 <Component {...pageProps} />
               </IntlProvider>
             </LangAndDir.Provider>
