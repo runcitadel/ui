@@ -4,7 +4,7 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 # Not working right now, yarn isn't copied properly
-#COPY package.json yarn.lock .yarn .yarnrc.yml ./
+COPY package.json yarn.lock .yarn .yarnrc.yml ./
 COPY . .
 RUN yarn
 

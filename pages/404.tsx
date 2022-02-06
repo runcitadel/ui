@@ -2,7 +2,6 @@
 import { Button } from '../components/form/Button'
 import { Flex } from '../components/layout/Flex'
 import { Link } from '../components/typography/Link'
-import NextLink from 'next/link'
 import { Text } from '../components/typography/Text'
 
 export default function Custom404() {

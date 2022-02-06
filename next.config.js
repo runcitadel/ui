@@ -4,10 +4,12 @@ const runtimeCaching = require('next-pwa/cache')
 
 // @ts-check
 
-/**
- * @type {import('next').NextConfig}
- **/
+/** @type {import('next').NextConfig} **/
 module.exports = withPWA({
+  i18n: {
+    locales: ['en-US', 'de-DE'],
+    defaultLocale: 'en-US',
+  },
   pwa: {
     /*
       Disabled the service worker in the development environment to avoid this issue:
@@ -20,8 +22,9 @@ module.exports = withPWA({
     dest: 'public',
     runtimeCaching,
   },
-  i18n: {
-    locales: ['en-US', 'de-DE'],
-    defaultLocale: 'en-US',
+  reactStrictMode: true,
+  publicRuntimeConfig: {
+    MIDDLEWARE_CONNECTION_URL: process.env.MIDDLEWARE_CONNECTION_URL,
+    MANAGER_CONNECTION_URL: process.env.MANAGER_CONNECTION_URL,
   },
 })

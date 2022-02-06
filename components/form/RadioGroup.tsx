@@ -10,12 +10,12 @@ import { useRadioGroupState } from '@react-stately/radio'
 import { Any } from '../layout/Any'
 import { VisuallyHidden } from '@react-aria/visually-hidden'
 
-let RadioContext = createContext<any>(null)
+const RadioContext = createContext<any>(null)
 
 function RadioGroup(props: React.ComponentProps<any>) {
-  let { children, label } = props
-  let state = useRadioGroupState(props)
-  let { radioGroupProps, labelProps } = useRadioGroup(props, state)
+  const { children, label } = props
+  const state = useRadioGroupState(props)
+  const { radioGroupProps, labelProps } = useRadioGroup(props, state)
 
   return (
     <div {...radioGroupProps}>
@@ -25,14 +25,14 @@ function RadioGroup(props: React.ComponentProps<any>) {
   )
 }
 export function Radio(props: any) {
-  let { children } = props
-  let state = useContext(RadioContext)
-  let ref = useRef(null)
-  let { inputProps } = useRadio(props, state, ref)
-  let { isFocusVisible, focusProps } = useFocusRing()
+  const { children } = props
+  const state = useContext(RadioContext)
+  const ref = useRef(null)
+  const { inputProps } = useRadio(props, state, ref)
+  const { isFocusVisible, focusProps } = useFocusRing()
 
-  let isSelected = state.selectedValue === props.value
-  let strokeWidth = isSelected ? 6 : 2
+  const isSelected = state.selectedValue === props.value
+  const strokeWidth = isSelected ? 6 : 2
 
   return (
     <Any as="label" css={{ display: 'flex', alignItems: 'center' }}>
