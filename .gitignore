@@ -42,4 +42,5 @@ public/worker-*.js
 public/worker-*.js.map
 public/workbox*
 
+# Internationalization tranlations
 content/compiled-locales
