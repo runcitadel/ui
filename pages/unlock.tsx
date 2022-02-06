@@ -1,7 +1,7 @@
 //UTILS
-import { initStateAndAuth } from '../lib/initStateAndAuth'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import { initStateAndAuth } from '../lib/initStateAndAuth'
 import { withSessionSsr } from '../lib/withSession'
 
 //COMPONENTS
@@ -17,6 +17,9 @@ import { TextField } from '../components/form/TextField'
 //MODELS
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
+//CONTEXTS
+import { LangAndDir } from '../contexts/LangAndDir'
+
 export const getServerSideProps: GetServerSideProps = withSessionSsr(
   async (context) => {
     return await initStateAndAuth(context, { dataSources: ['isTotpEnabled'] })
@@ -28,6 +31,7 @@ type ServerSideProps = InferGetServerSidePropsType<typeof getServerSideProps>
 export default function Unlock(props: ServerSideProps) {
   const { isTotpEnabled } = props
   const router = useRouter()
+  const { loc } = useContext(LangAndDir)
   const [password, setPassword] = useState('')
   const [totpToken, setTotpToken] = useState('')
 
@@ -39,7 +43,7 @@ export default function Unlock(props: ServerSideProps) {
         'Content-Type': 'application/json',
         // Todo: depending on what language is selected, the accept-language should be altered on each request
         //Toastr messages must be translated at the request level
-        // 'Accept-Language': 'de',
+        'Accept-Language': loc.lang,
       },
       body: JSON.stringify({ password, totpToken }),
     })

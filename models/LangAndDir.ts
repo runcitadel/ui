@@ -1,7 +1,7 @@
 import { Dispatch } from 'react'
-import { ActualLoc } from './ActualLoc'
+import { Loc } from './Loc'
 
 export type LangAndDir = {
-  actualLoc: ActualLoc
-  setActualLoc: Dispatch<React.SetStateAction<ActualLoc>>
+  loc: Loc
+  setLoc: Dispatch<React.SetStateAction<Loc>>
 }
