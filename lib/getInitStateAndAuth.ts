@@ -11,7 +11,7 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
   - Serves as an auth guard
   - Retrieves applicable data needed for each page
 */
-export const initStateAndAuth = async (
+export const getInitStateAndAuth = async (
   context: GetServerSidePropsContext,
   {
     dataSources = [],
@@ -57,7 +57,6 @@ export const initStateAndAuth = async (
           //We proceed here to make a couple more auth guard validations
           //Involving invalid jwt acceccing a protected route, and a valid jwt accessing the unlock route
           citadelManager.auth.test().then(async (isValidJwt: boolean) => {
-            console.log(isValidJwt, 'isValidJwt')
             if (!isValidJwt) {
               //Update session if jwt is no longer valid
               req.session.jwt = ''
@@ -80,7 +79,7 @@ export const initStateAndAuth = async (
               })
             } else {
               //By now all auth guard checks have passed!
-              //Now we use data source getters, and the data sources defined in initStateAndAuth's config to get any data this route needs when rendered
+              //Now we use data source getters, and the data sources defined in getInitStateAndAuth's config to get any data this route needs when rendered
               Promise.all(
                 dataSources.map<any>((dataSource: DataSource) =>
                   dataSourceGetters[dataSource](citadelManager, citadelMiddleware)

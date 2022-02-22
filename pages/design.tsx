@@ -1,5 +1,5 @@
 //UTILS
-import { initStateAndAuth } from '../lib/initStateAndAuth'
+import { getInitStateAndAuth } from '../lib/getInitStateAndAuth'
 import { useState } from 'react'
 import { useToggleState } from '@react-stately/toggle'
 import { withSessionSsr } from '../lib/withSession'
@@ -21,7 +21,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
 export const getServerSideProps: GetServerSideProps = withSessionSsr(
   async (context) => {
-    return await initStateAndAuth(context, { protectedRoute: false })
+    return await getInitStateAndAuth(context, { protectedRoute: false })
   }
 )
 

@@ -24,12 +24,15 @@ import { AppProps } from 'next/app'
 import { Loc } from '../models/Loc'
 
 //LANGUAGES
-import English from '../content/compiled-locales/en.json'
-import German from '../content/compiled-locales/de.json'
+import nb_NO from '../content/compiled-locales/nb_NO.json'
+import en_US from '../content/compiled-locales/en.json'
+import fr from '../content/compiled-locales/fr.json'
+import de from '../content/compiled-locales/de.json'
 
 //@axe-core/react tests the accessibility of the rendered DOM, and logs any issues to the developer console
 //It should be disabled in production to optimize performance
-if (process.env.NODE_ENV !== 'production') {
+if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const axe = require('@axe-core/react')
   axe(React, ReactDOM, 1000)
 }
@@ -37,27 +40,28 @@ if (process.env.NODE_ENV !== 'production') {
 export default function App({ Component, pageProps }: AppProps) {
   //Use react-aria to get the user's browser defaults, but use Context and useState to allow the language to be changed
   const { locale: localeTemp, direction: directionTemp } = useLocale()
-  const [messages, setMessages] = useState(English)
 
   //Use React.useState to store the chosen language
   //This can be leveraged to allow the user to choose the language they prefer and override the Browser's default language
   const [loc, setLoc] = useState<Loc>({
-    lang: localeTemp.split('-')[0],
+    lang: localeTemp,
     dir: directionTemp as DirectionSetting,
   })
 
-  useMemo(() => {
+  const messages = useMemo(() => {
+    //Determine if the language is RTL and set it
+    setLoc((loc) => ({ ...loc, dir: isRTL(loc.lang) ? 'rl' : 'lr' }))
     //Determine which language messages need to be used
     switch (loc.lang) {
       case 'de':
-        setMessages(German)
-        break
+        return de
+      case 'fr':
+        return fr
+      case 'nb_NO':
+        return nb_NO
       default:
-        setMessages(English)
+        return en_US
     }
-
-    //Determine if the language is RTL
-    setLoc({ ...loc, lang: isRTL(loc.lang) ? 'rtl' : 'ltr' })
   }, [loc.lang])
 
   return (

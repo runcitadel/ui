@@ -1,5 +1,5 @@
 //UTILS
-import { initStateAndAuth } from '../lib/initStateAndAuth'
+import { getInitStateAndAuth } from '../lib/getInitStateAndAuth'
 import { withSessionSsr } from '../lib/withSession'
 
 //COMPONENTS
@@ -13,7 +13,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
 export const getServerSideProps: GetServerSideProps = withSessionSsr(
   async (context) => {
-    return await initStateAndAuth(context, {})
+    return await getInitStateAndAuth(context, {})
   }
 )
 

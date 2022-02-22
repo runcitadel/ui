@@ -1,7 +1,7 @@
 //UTILS
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { initStateAndAuth } from '../lib/initStateAndAuth'
+import { getInitStateAndAuth } from '../lib/getInitStateAndAuth'
 import { withSessionSsr } from '../lib/withSession'
 
 //COMPONENTS
@@ -22,7 +22,7 @@ import { LangAndDir } from '../contexts/LangAndDir'
 
 export const getServerSideProps: GetServerSideProps = withSessionSsr(
   async (context) => {
-    return await initStateAndAuth(context, { dataSources: ['isTotpEnabled'] })
+    return await getInitStateAndAuth(context, { dataSources: ['isTotpEnabled'] })
   }
 )
 
@@ -37,7 +37,7 @@ export default function Unlock(props: ServerSideProps) {
 
   const submissionHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    fetch('/api/login', {
+    fetch('/api/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
