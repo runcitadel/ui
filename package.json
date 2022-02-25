@@ -2,6 +2,15 @@
   "name": "ui",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "precommit": "yarn format",
+    "dev": "next dev",
+    "lint": "next lint",
+    "build": "next build",
+    "start": "next start",
+    "test": "react-scripts test",
+    "format": "prettier --write '**/*.{js,json,css,md}' '!package.json|yarn*|node_modules|build|coverage'"
+  },
   "dependencies": {
     "@bitcoin-design/bitcoin-icons-react": "^0.1.7",
     "@react-stately/toggle": "^3.2.3",
@@ -29,15 +38,6 @@
     "swr": "^1.0.1",
     "typescript": "^4.4.4",
     "web-vitals": "^2.1.2"
-  },
-  "scripts": {
-    "precommit": "yarn format",
-    "dev": "next dev",
-    "lint": "next lint",
-    "build": "next build",
-    "start": "next start",
-    "test": "react-scripts test",
-    "format": "prettier --write '**/*.{js,json,css,md}' '!package.json|yarn*|node_modules|build|coverage'"
   },
   "eslintConfig": {
     "ignorePatterns": [

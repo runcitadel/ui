@@ -1,41 +1,53 @@
-FROM node:alpine AS deps
+# Define version & use pinned images
+ARG NODE_VERSION=16
 
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-# Not working right now, yarn isn't copied properly
-#COPY package.json yarn.lock .yarn .yarnrc.yml ./
-COPY . .
-RUN yarn
+# Build on the host architecture, change this if you're building on arm64
+FROM amd64/node:${NODE_VERSION}-alpine@sha256:425c81a04546a543da824e67c91d4a603af16fbc3d875ee2f276acf8ec2b1577 as node-builder
+# Use multi-arch image for running the app
+FROM node:${NODE_VERSION}-alpine@sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b as node-runner
 
-FROM amd64/node:alpine AS builder
-COPY --from=deps /app /app
+
+# DEPENDENCIES
+FROM node-builder AS dependencies
+# Create app directory
 WORKDIR /app
+# Copy dependency management files
+COPY package.json yarn.lock .yarnrc.yml .yarn ./
+COPY .yarn/releases/yarn-3.1.0.cjs /app/.yarn/releases/yarn-3.1.0.cjs
+# Install dependencies
+RUN yarn install
+
+
+# DEVELOPMENT
+FROM dependencies AS development
+# NOTE: Using project files from mounted volumes
+ENV PORT=3010
+EXPOSE 3010
+CMD [ "yarn", "dev" ]
+
+
+# BUILD (production)
+FROM dependencies AS builder
+# Copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
-RUN yarn
+# Build app for production
 RUN yarn build
 
-# Production image
-FROM node:alpine AS runner
+
+# PRODUCTION
+FROM node-runner AS production
+# Create app directory
 WORKDIR /app
-
-ENV NODE_ENV production
-
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
+# Copy project files and folders needed to run Next.js
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-
+# Configure environment
+EXPOSE 3004
+ENV PORT 3004
+ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
-
-CMD ["node_modules/.bin/next", "start"]
+# Start server
+CMD [ "yarn", "start" ]

@@ -1,6 +1,8 @@
 // eslint-disable @typescript-eslint/no-var-requires
 const withPWA = require("next-pwa");
 const runtimeCaching = require("next-pwa/cache");
+// check if we're running in a container
+const isDocker = process.env.PROJECT_CWD === "/app";
 
 module.exports = withPWA({
   pwa: {
@@ -14,5 +16,15 @@ module.exports = withPWA({
     disable: process.env.NODE_ENV === "development",
     dest: "public",
     runtimeCaching,
+  },
+  webpackDevMiddleware: config => {
+    // only use polling if running in container
+    if (isDocker) {
+      config.watchOptions = {
+        poll: 1000,
+        aggregateTimeout: 300,
+      }
+    } 
+    return config
   },
 });
