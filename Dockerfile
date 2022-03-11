@@ -41,7 +41,7 @@ WORKDIR /app
 # Copy project files and folders needed to run Next.js
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
+COPY --from=builder --chown=node:node /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 # Configure environment
@@ -50,4 +50,5 @@ ENV PORT 3004
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 # Start server
+USER node
 CMD [ "yarn", "start" ]
