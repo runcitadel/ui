@@ -7,7 +7,20 @@ FROM amd64/node:${NODE_VERSION}-alpine@sha256:425c81a04546a543da824e67c91d4a603a
 FROM node:${NODE_VERSION}-alpine@sha256:2c6c59cf4d34d4f937ddfcf33bab9d8bbad8658d1b9de7b97622566a52167f2b as node-runner
 
 
-# DEPENDENCIES
+# DEVELOPMENT
+FROM node-builder AS development
+# Create app directory
+WORKDIR /app
+# NOTE: Using project files from mounted volumes
+EXPOSE 3010
+ENV PORT 3010
+ENV NODE_ENV development
+ENV NEXT_TELEMETRY_DISABLED 1
+USER node
+CMD yarn install && yarn dev
+
+
+# DEPENDENCIES (production)
 FROM node-builder AS dependencies
 # Create app directory
 WORKDIR /app
@@ -16,14 +29,6 @@ COPY package.json yarn.lock .yarnrc.yml .yarn ./
 COPY .yarn/releases/yarn-3.1.0.cjs /app/.yarn/releases/yarn-3.1.0.cjs
 # Install dependencies
 RUN yarn install
-
-
-# DEVELOPMENT
-FROM dependencies AS development
-# NOTE: Using project files from mounted volumes
-ENV PORT=3010
-EXPOSE 3010
-CMD [ "yarn", "dev" ]
 
 
 # BUILD (production)
@@ -49,6 +54,5 @@ EXPOSE 3004
 ENV PORT 3004
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
-# Start server
 USER node
 CMD [ "yarn", "start" ]
