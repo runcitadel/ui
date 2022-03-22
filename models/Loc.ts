@@ -1,4 +1,4 @@
 export type Loc = {
-  lang: string
-  dir: DirectionSetting
+	lang: string
+	dir: DirectionSetting
 }

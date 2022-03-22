@@ -7,25 +7,25 @@ import GermanLang from '../content/compiled-locales/de.json'
 const cache = createIntlCache()
 
 export function getIntl(locale: string) {
-  let messages = null
+	let messages = null
 
-  switch (locale) {
-    case 'de':
-      messages = GermanLang
-      break
-    default:
-      messages = EnglishLang
-      break
-  }
+	switch (locale) {
+		case 'de':
+			messages = GermanLang
+			break
+		default:
+			messages = EnglishLang
+			break
+	}
 
-  const intl = createIntl(
-    {
-      defaultLocale: 'en',
-      locale,
-      messages,
-    },
-    cache
-  )
+	const intl = createIntl(
+		{
+			defaultLocale: 'en',
+			locale,
+			messages,
+		},
+		cache
+	)
 
-  return intl
+	return intl
 }

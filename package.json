@@ -1,154 +1,160 @@
 {
-  "name": "ui",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "@bitcoin-design/bitcoin-icons-react": "^0.1.8",
-    "@formatjs/intl": "^1.18.0",
-    "@react-stately/toggle": "^3.2.3",
-    "@runcitadel/sdk": "^0.2.1",
-    "@stitches/react": "^1.2.6",
-    "iron-session": "^6.0.4",
-    "next": "^12.0.7",
-    "next-pwa": "^5.4.4",
-    "next-themes": "^0.0.15",
-    "react": "^17.0.2",
-    "react-aria": "^3.11.0",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1",
-    "react-intl": "^5.24.0",
-    "swr": "^1.1.0",
-    "web-vitals": "^2.1.2"
-  },
-  "scripts": {
-    "precommit": "yarn format",
-    "dev": "next dev",
-    "lint": "next lint",
-    "build": "next build",
-    "start": "next start",
-    "test": "react-scripts test",
-    "format": "prettier --write '{,!(.next|public|.github)/**/}*.{ts,tsx,js,json,css,md}'",
-    "extract:i18n": "formatjs extract '{pages,components,lib}/**/*.{js,ts,tsx}' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file content/locales/en.json",
-    "compile:i18n": "formatjs compile-folder --ast content/locales content/compiled-locales",
-    "i18n": "npm run extract:i18n && npm run compile:i18n",
-    "disable-telemetry": "npx next telemetry disable"
-  },
-  "babel": {
-    "presets": [
-      "next/babel"
-    ],
-    "plugins": [
-      [
-        "formatjs",
-        {
-          "idInterpolationPattern": "[sha512:contenthash:base64:6]",
-          "ast": true
-        }
-      ]
-    ]
-  },
-  "eslintConfig": {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "env": {
-      "browser": true,
-      "es2021": true,
-      "node": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react-hooks/recommended",
-      "plugin:jsx-a11y/recommended",
-      "plugin:prettier/recommended",
-      "plugin:@next/next/recommended"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 12,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react",
-      "jsx-a11y"
-    ],
-    "rules": {
-      "react/react-in-jsx-scope": "off",
-      "jsx-a11y/anchor-is-valid": "off",
-      " @typescript-eslint/no-explicit-any": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.ts",
-          "**/*.tsx"
-        ],
-        "parser": "@typescript-eslint/parser",
-        "plugins": [
-          "@typescript-eslint"
-        ],
-        "extends": [
-          "plugin:@typescript-eslint/recommended"
-        ],
-        "rules": {
-          "react/prop-types": "off",
-          "@typescript-eslint/ban-ts-comment": "warn"
-        }
-      }
-    ]
-  },
-  "prettier": {
-    "semi": false,
-    "trailingComma": "es5",
-    "singleQuote": true,
-    "printWidth": 85,
-    "tabWidth": 2,
-    "useTabs": false
-  },
-  "browserslist": {
-    "production": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "packageManager": "yarn@3.1.1",
-  "devDependencies": {
-    "@axe-core/react": "^4.3.2",
-    "@formatjs/cli": "^4.5.0",
-    "@next/eslint-plugin-next": "^12.0.8",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.12",
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "@typescript-eslint/parser": "^5.6.0",
-    "autoprefixer": "^10.4.2",
-    "eslint": "^8.4.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.1",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "postcss": "^8.4.5",
-    "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.13",
-    "typescript": "^4.5.3",
-    "yalc": "^1.0.0-pre.53"
-  }
+	"name": "ui",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"@bitcoin-design/bitcoin-icons-react": "^0.1.8",
+		"@formatjs/intl": "^1.18.0",
+		"@react-stately/toggle": "^3.2.3",
+		"@runcitadel/sdk": "latest",
+		"@stitches/react": "^1.2.6",
+		"@testing-library/jest-dom": "^5.15.0",
+		"@testing-library/react": "^12.1.2",
+		"@testing-library/user-event": "^13.5.0",
+		"@types/jest": "^27.0.2",
+		"@types/node": "^16.11.7",
+		"@types/react": "^17.0.34",
+		"@types/react-dom": "^17.0.11",
+		"@typescript-eslint/eslint-plugin": "^5.3.1",
+		"@typescript-eslint/parser": "^5.3.1",
+		"framer-motion": "^5.3.0",
+		"iron-session": "^6.0.4",
+		"next": "^12.0.7",
+		"next-pwa": "^5.4.4",
+		"next-themes": "^0.0.15",
+		"react": "^17.0.2",
+		"react-aria": "^3.11.0",
+		"react-dom": "^17.0.2",
+		"react-icons": "^4.3.1",
+		"react-intl": "^5.24.0",
+		"swr": "^1.1.0",
+		"web-vitals": "^2.1.2"
+	},
+	"scripts": {
+		"precommit": "yarn format",
+		"dev": "next dev",
+		"lint": "next lint",
+		"build": "next build",
+		"start": "next start",
+		"test": "react-scripts test",
+		"format": "prettier --write '{,!(.next|public|.github)/**/}*.{ts,tsx,js,json,css,md}'",
+		"extract:i18n": "formatjs extract '{pages,components,lib}/**/*.{js,ts,tsx}' --id-interpolation-pattern '[sha512:contenthash:base64:6]' --out-file content/locales/en.json",
+		"compile:i18n": "formatjs compile-folder --ast content/locales content/compiled-locales",
+		"i18n": "yarn extract:i18n && yarn compile:i18n",
+		"disable-telemetry": "npx next telemetry disable"
+	},
+	"babel": {
+		"presets": [
+			"next/babel"
+		],
+		"plugins": [
+			[
+				"formatjs",
+				{
+					"idInterpolationPattern": "[sha512:contenthash:base64:6]",
+					"ast": true
+				}
+			]
+		]
+	},
+	"eslintConfig": {
+		"root": true,
+		"parser": "@typescript-eslint/parser",
+		"settings": {
+			"react": {
+				"version": "detect"
+			}
+		},
+		"env": {
+			"browser": true,
+			"es2021": true,
+			"node": true
+		},
+		"ignorePatterns": [
+			"build/*",
+			"**/public/*.js"
+		],
+		"extends": [
+			"eslint:recommended",
+			"plugin:react/recommended",
+			"plugin:react-hooks/recommended",
+			"plugin:jsx-a11y/recommended",
+			"plugin:prettier/recommended",
+			"plugin:@next/next/recommended"
+		],
+		"parserOptions": {
+			"ecmaFeatures": {
+				"jsx": true
+			},
+			"ecmaVersion": 12,
+			"sourceType": "module"
+		},
+		"plugins": [
+			"react",
+			"jsx-a11y"
+		],
+		"rules": {
+			"react/react-in-jsx-scope": "off",
+			"jsx-a11y/anchor-is-valid": "off",
+			" @typescript-eslint/no-explicit-any": "off"
+		},
+		"overrides": [
+			{
+				"files": [
+					"**/*.ts",
+					"**/*.tsx"
+				],
+				"parser": "@typescript-eslint/parser",
+				"plugins": [
+					"@typescript-eslint"
+				],
+				"extends": [
+					"plugin:@typescript-eslint/recommended"
+				],
+				"rules": {
+					"react/prop-types": "off",
+					"@typescript-eslint/ban-ts-comment": "warn"
+				}
+			}
+		]
+	},
+	"browserslist": {
+		"production": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"packageManager": "yarn@3.1.1",
+	"devDependencies": {
+		"@axe-core/react": "^4.3.2",
+		"@formatjs/cli": "^4.5.0",
+		"@next/eslint-plugin-next": "^12.0.8",
+		"@testing-library/jest-dom": "^5.16.1",
+		"@testing-library/react": "^12.1.2",
+		"@testing-library/user-event": "^13.5.0",
+		"@types/jest": "^27.0.3",
+		"@types/node": "^16.11.12",
+		"@types/react": "^17.0.37",
+		"@types/react-dom": "^17.0.11",
+		"@typescript-eslint/eslint-plugin": "^5.6.0",
+		"@typescript-eslint/parser": "^5.6.0",
+		"autoprefixer": "^10.4.2",
+		"eslint": "^8.4.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-react": "^7.27.1",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"postcss": "^8.4.5",
+		"prettier": "^2.5.1",
+		"tailwindcss": "^3.0.13",
+		"typescript": "^4.5.3",
+		"yalc": "^1.0.0-pre.53"
+	}
 }

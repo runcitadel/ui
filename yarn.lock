@@ -1311,6 +1311,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/is-prop-valid@npm:^0.8.2":
+  version: 0.8.8
+  resolution: "@emotion/is-prop-valid@npm:0.8.8"
+  dependencies:
+    "@emotion/memoize": 0.7.4
+  checksum: bb7ec6d48c572c540e24e47cc94fc2f8dec2d6a342ae97bc9c8b6388d9b8d283862672172a1bb62d335c02662afe6291e10c71e9b8642664a8b43416cdceffac
+  languageName: node
+  linkType: hard
+
+"@emotion/memoize@npm:0.7.4":
+  version: 0.7.4
+  resolution: "@emotion/memoize@npm:0.7.4"
+  checksum: 4e3920d4ec95995657a37beb43d3f4b7d89fed6caa2b173a4c04d10482d089d5c3ea50bbc96618d918b020f26ed6e9c4026bbd45433566576c1f7b056c3271dc
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^1.0.5":
   version: 1.0.5
   resolution: "@eslint/eslintrc@npm:1.0.5"
@@ -3014,15 +3030,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@runcitadel/sdk@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "@runcitadel/sdk@npm:0.2.1"
+"@runcitadel/sdk@npm:latest":
+  version: 0.3.4
+  resolution: "@runcitadel/sdk@npm:0.3.4"
   dependencies:
-    undici: ^4.12.2
+    undici: ^4.15.1
   peerDependencies:
-    "@types/react": ^17.0.38
+    "@types/react": ^17.0.39
     react: ^17.0.2
-  checksum: 107228b1576eaafe0bdc6c5525d2379139f8e0649152b110fb90b032397d1ad64807e4a98919e9c10e06bd90659b93548506c7dcd4a4f41ab76badaac9fde044
+  checksum: 23cdfde3594f916f7a4b7d79856915d6ce474a83e1f96e0247767d2b8fcc6b0be4c181ef50cab37b11df8b97ec4601314b1949146c5e0ea833fc54a7b7b59752
   languageName: node
   linkType: hard
 
@@ -4725,6 +4741,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debounce@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "debounce@npm:1.2.1"
+  checksum: 682a89506d9e54fb109526f4da255c5546102fbb8e3ae75eef3b04effaf5d4853756aee97475cd4650641869794e44f410eeb20ace2b18ea592287ab2038519e
+  languageName: node
+  linkType: hard
+
 "debug@npm:2":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -5496,6 +5519,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^5.3.0":
+  version: 5.6.0
+  resolution: "framer-motion@npm:5.6.0"
+  dependencies:
+    "@emotion/is-prop-valid": ^0.8.2
+    framesync: 6.0.1
+    hey-listen: ^1.0.8
+    popmotion: 11.0.3
+    react-merge-refs: ^1.1.0
+    react-use-measure: ^2.1.1
+    style-value-types: 5.0.0
+    tslib: ^2.1.0
+  peerDependencies:
+    "@react-three/fiber": "*"
+    react: ">=16.8 || ^17.0.0"
+    react-dom: ">=16.8 || ^17.0.0"
+    three: ^0.135.0
+  dependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+  peerDependenciesMeta:
+    "@react-three/fiber":
+      optional: true
+    three:
+      optional: true
+  checksum: 384374bebda443ea2a149951337c4f82b9c3611e138e8dd8db6439bbccc4523968deb72dde83d5686223ec78be58f8ae1f51b9e34b585e4c50df15266e586a60
+  languageName: node
+  linkType: hard
+
+"framesync@npm:6.0.1":
+  version: 6.0.1
+  resolution: "framesync@npm:6.0.1"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: a23ebe8f7e20a32c0b99c2f8175b6f07af3ec6316aad52a2316316a6d011d717af8d2175dcc2827031c59fabb30232ed3e19a720a373caba7f070e1eae436325
+  languageName: node
+  linkType: hard
+
 "fs-extra@npm:10":
   version: 10.0.0
   resolution: "fs-extra@npm:10.0.0"
@@ -5830,6 +5891,13 @@ __metadata:
   bin:
     he: bin/he
   checksum: 3d4d6babccccd79c5c5a3f929a68af33360d6445587d628087f39a965079d84f18ce9c3d3f917ee1e3978916fc833bb8b29377c3b403f919426f91bc6965e7a7
+  languageName: node
+  linkType: hard
+
+"hey-listen@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "hey-listen@npm:1.0.8"
+  checksum: 6bad60b367688f5348e25e7ca3276a74b59ac5a09b0455e6ff8ab7d4a9e38cd2116c708a7dcd8a954d27253ce1d8717ec891d175723ea739885b828cf44e4072
   languageName: node
   linkType: hard
 
@@ -7538,6 +7606,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"popmotion@npm:11.0.3":
+  version: 11.0.3
+  resolution: "popmotion@npm:11.0.3"
+  dependencies:
+    framesync: 6.0.1
+    hey-listen: ^1.0.8
+    style-value-types: 5.0.0
+    tslib: ^2.1.0
+  checksum: 9fe7d03b4ec0e85bfb9dadc23b745147bfe42e16f466ba06e6327197d0e38b72015afc2f918a8051dedc3680310417f346ffdc463be6518e2e92e98f48e30268
+  languageName: node
+  linkType: hard
+
 "postcss-js@npm:^4.0.0":
   version: 4.0.0
   resolution: "postcss-js@npm:4.0.0"
@@ -7882,10 +7962,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-merge-refs@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "react-merge-refs@npm:1.1.0"
+  checksum: 90884352999002d868ab9f1bcfe3222fb0f2178ed629f1da7e98e5a9b02a2c96b4aa72800db92aabd69d2483211b4be57a2088e89a11a0b660e7ada744d4ddf7
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:0.8.3":
   version: 0.8.3
   resolution: "react-refresh@npm:0.8.3"
   checksum: 3cffe5a9cbac1c5d59bf74bf9fff43c987d87ef32098b9092ea94b6637377d86c08565b9374d9397f446b3fbcd95de986ec77220a16f979687cb39b7b89e2f91
+  languageName: node
+  linkType: hard
+
+"react-use-measure@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "react-use-measure@npm:2.1.1"
+  dependencies:
+    debounce: ^1.2.1
+  peerDependencies:
+    react: ">=16.13"
+    react-dom: ">=16.13"
+  checksum: b8e8939229d463c3c505f7b617925c0228efae0cd6f651371f463846417b06c9170be57df51293a61027c41770f8a090fdb8a08717c4e36290ccb496e0318f1f
   languageName: node
   linkType: hard
 
@@ -8632,6 +8731,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"style-value-types@npm:5.0.0":
+  version: 5.0.0
+  resolution: "style-value-types@npm:5.0.0"
+  dependencies:
+    hey-listen: ^1.0.8
+    tslib: ^2.1.0
+  checksum: 16d198302cd102edf9dba94e7752a2364c93b1eaa5cc7c32b42b28eef4af4ccb5149a3f16bc2a256adc02616a2404f4612bd15f3081c1e8ca06132cae78be6c0
+  languageName: node
+  linkType: hard
+
 "styled-jsx@npm:5.0.0-beta.3":
   version: 5.0.0-beta.3
   resolution: "styled-jsx@npm:5.0.0-beta.3"
@@ -8959,7 +9068,7 @@ __metadata:
     "@formatjs/intl": ^1.18.0
     "@next/eslint-plugin-next": ^12.0.8
     "@react-stately/toggle": ^3.2.3
-    "@runcitadel/sdk": ^0.2.1
+    "@runcitadel/sdk": latest
     "@stitches/react": ^1.2.6
     "@testing-library/jest-dom": ^5.16.1
     "@testing-library/react": ^12.1.2
@@ -8977,6 +9086,7 @@ __metadata:
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.27.1
     eslint-plugin-react-hooks: ^4.3.0
+    framer-motion: ^5.3.0
     iron-session: ^6.0.4
     next: ^12.0.7
     next-pwa: ^5.4.4
@@ -9008,10 +9118,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^4.12.2":
-  version: 4.12.2
-  resolution: "undici@npm:4.12.2"
-  checksum: e53e144e96afdd097e3289f92ec9baad856dbe162cbb9c0e50b9105244cc7c0867cad3ef444274c78700b3ffc0a96603b26516f59a709008f8dd93eb1482567f
+"undici@npm:^4.15.1":
+  version: 4.16.0
+  resolution: "undici@npm:4.16.0"
+  checksum: 5e88c2b3381085e25ed1d1a308610ac7ee985f478ac705af7a8e03213536e10f73ef8dd8d85e6ed38948d1883fa0ae935e04357c317b0f5d3d3c0211d0c8c393
   languageName: node
   linkType: hard
 

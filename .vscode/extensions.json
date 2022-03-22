@@ -1,10 +1,10 @@
 {
-  "recommendations": [
-    "bradlc.vscode-tailwindcss",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "streetsidesoftware.code-spell-checker",
-    "willstakayama.vscode-nextjs-snippets",
-    "vscode-ext-color-highlight"
-  ]
+	"recommendations": [
+		"bradlc.vscode-tailwindcss",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"streetsidesoftware.code-spell-checker",
+		"willstakayama.vscode-nextjs-snippets",
+		"vscode-ext-color-highlight"
+	]
 }

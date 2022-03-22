@@ -1,20 +1,20 @@
 {
-    "api.login.invalidPass": {
-        "description": "Feilmelding om ugyldig passord",
-        "defaultMessage": "Ugyldig passord"
-    },
-    "unlock.loginFormSubmitButtonText": {
-        "defaultMessage": "Lås opp",
-        "description": "Logg inn/lås opp skjemaknappetekst"
-    },
-    "unlock.passwordInputLabel": {
-        "defaultMessage": "Passord"
-    },
-    "api.login.invalidPassOr2fa": {
-        "description": "Feilmelding om ugyldig passord eller 2FA-symbol",
-        "defaultMessage": "Ugyldig passord eller 2FA-symbol"
-    },
-    "unlock.updateAvailableNotification": {
-        "defaultMessage": "Oppgradering tilgjengelig"
-    }
+	"api.login.invalidPass": {
+		"description": "Feilmelding om ugyldig passord",
+		"defaultMessage": "Ugyldig passord"
+	},
+	"unlock.loginFormSubmitButtonText": {
+		"defaultMessage": "Lås opp",
+		"description": "Logg inn/lås opp skjemaknappetekst"
+	},
+	"unlock.passwordInputLabel": {
+		"defaultMessage": "Passord"
+	},
+	"api.login.invalidPassOr2fa": {
+		"description": "Feilmelding om ugyldig passord eller 2FA-symbol",
+		"defaultMessage": "Ugyldig passord eller 2FA-symbol"
+	},
+	"unlock.updateAvailableNotification": {
+		"defaultMessage": "Oppgradering tilgjengelig"
+	}
 }

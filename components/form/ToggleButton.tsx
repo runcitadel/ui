@@ -10,31 +10,27 @@ import { Button } from './Button'
 import { CSS } from '@stitches/react'
 
 type ToggleButton = {
-  css?: CSS
+	css?: CSS
 }
 
 export const ToggleButton = (props: React.ComponentProps<any>) => {
-  const { css } = props
-  const ref = useRef(null)
-  const state = useToggleState(props)
-  //Todo: add pressed/active styles with isPressed
-  const { buttonProps, isPressed } = useToggleButton(
-    { ...props, elementType: Button },
-    state,
-    ref
-  )
+	const { css } = props
+	const ref = useRef(null)
+	const state = useToggleState(props)
+	//Todo: add pressed/active styles with isPressed
+	const { buttonProps, isPressed } = useToggleButton({ ...props, elementType: Button }, state, ref)
 
-  return (
-    <Button
-      ref={ref}
-      {...buttonProps}
-      css={{
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-        ...css,
-      }}
-    >
-      {props.children}
-    </Button>
-  )
+	return (
+		<Button
+			ref={ref}
+			{...buttonProps}
+			css={{
+				userSelect: 'none',
+				WebkitUserSelect: 'none',
+				...css,
+			}}
+		>
+			{props.children}
+		</Button>
+	)
 }

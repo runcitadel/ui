@@ -1,54 +1,54 @@
 {
-  "api.internalServerError": {
-    "defaultMessage": "Internal Server Error",
-    "description": "An unknown error occurred, sanitized error message"
-  },
-  "api.login.invalidPass": {
-    "defaultMessage": "Invalid password",
-    "description": "Invalid password error message"
-  },
-  "api.login.invalidPassOr2fa": {
-    "defaultMessage": "Invalid password or 2fa token",
-    "description": "Invalid password or 2fa token error message"
-  },
-  "api.logout.success": {
-    "defaultMessage": "Successful user log out",
-    "description": "Successful user log out"
-  },
-  "api.noPasswordProvided": {
-    "defaultMessage": "No password provided",
-    "description": "No password provided"
-  },
-  "api.register.noNameProvided": {
-    "defaultMessage": "No name provided",
-    "description": "Request to register, but no name provided"
-  },
-  "api.register.noSeedProvided": {
-    "defaultMessage": "No seed provided",
-    "description": "Request to register, but no seed provided"
-  },
-  "api.register.userAlreadyRegistered": {
-    "defaultMessage": "User already registered",
-    "description": "Request to register, but user already registered"
-  },
-  "api.setupTotp.alreadySetup": {
-    "defaultMessage": "Two-factor authentication already set up",
-    "description": "Request to set up totp/2fa, but it was already set up"
-  },
-  "unlock.loginFormSubmitButtonText": {
-    "defaultMessage": "Unlock",
-    "description": "Login/unlock form button text"
-  },
-  "unlock.passwordInputLabel": {
-    "defaultMessage": "Password",
-    "description": "Login password input field label"
-  },
-  "unlock.twoFactorAuthLabel": {
-    "defaultMessage": "Two-factor Authentication Token",
-    "description": "Two-factor authentication token input label"
-  },
-  "unlock.updateAvailableNotification": {
-    "defaultMessage": "Update Available",
-    "description": "Update available button text"
-  }
+	"api.internalServerError": {
+		"defaultMessage": "Internal Server Error",
+		"description": "An unknown error occurred, sanitized error message"
+	},
+	"api.login.invalidPass": {
+		"defaultMessage": "Invalid password",
+		"description": "Invalid password error message"
+	},
+	"api.login.invalidPassOr2fa": {
+		"defaultMessage": "Invalid password or 2fa token",
+		"description": "Invalid password or 2fa token error message"
+	},
+	"api.logout.success": {
+		"defaultMessage": "Successful user log out",
+		"description": "Successful user log out"
+	},
+	"api.noPasswordProvided": {
+		"defaultMessage": "No password provided",
+		"description": "No password provided"
+	},
+	"api.register.noNameProvided": {
+		"defaultMessage": "No name provided",
+		"description": "Request to register, but no name provided"
+	},
+	"api.register.noSeedProvided": {
+		"defaultMessage": "No seed provided",
+		"description": "Request to register, but no seed provided"
+	},
+	"api.register.userAlreadyRegistered": {
+		"defaultMessage": "User already registered",
+		"description": "Request to register, but user already registered"
+	},
+	"api.setupTotp.alreadySetup": {
+		"defaultMessage": "Two-factor authentication already set up",
+		"description": "Request to set up totp/2fa, but it was already set up"
+	},
+	"unlock.loginFormSubmitButtonText": {
+		"defaultMessage": "Unlock",
+		"description": "Login/unlock form button text"
+	},
+	"unlock.passwordInputLabel": {
+		"defaultMessage": "Password",
+		"description": "Login password input field label"
+	},
+	"unlock.twoFactorAuthLabel": {
+		"defaultMessage": "Two-factor Authentication Token",
+		"description": "Two-factor authentication token input label"
+	},
+	"unlock.updateAvailableNotification": {
+		"defaultMessage": "Update Available",
+		"description": "Update available button text"
+	}
 }

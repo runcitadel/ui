@@ -8,5 +8,5 @@ const AnyBase = styled('div')
 type AnyProps = React.ComponentProps<any> & { as: string }
 
 export function Any(props: AnyProps) {
-  return <AnyBase {...props} />
+	return <AnyBase {...props} />
 }
