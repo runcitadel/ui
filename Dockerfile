@@ -26,7 +26,7 @@ FROM node-builder AS dependencies
 WORKDIR /app
 # Copy dependency management files
 COPY package.json yarn.lock .yarnrc.yml .yarn ./
-COPY .yarn/releases/yarn-3.1.0.cjs /app/.yarn/releases/yarn-3.1.0.cjs
+COPY .yarn/releases/yarn-3.1.1.cjs /app/.yarn/releases/yarn-3.1.1.cjs
 # Install dependencies
 RUN yarn install
 
